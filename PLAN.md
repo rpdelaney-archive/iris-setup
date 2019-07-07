@@ -12,12 +12,11 @@ Hardware specs [here](./HARDWARE.md).
 
 [Execution plan](./MVP-PRE_OS.md)
 
-1. Partition tables: [GPT](https://wiki.archlinux.org/index.php/GPT)
+1. Partition the disks
    1. A `swap` partition of 32G
    1. A `/` partition for the rest, since we don't need EFI and we will be using btrfs subvolumes under LUKS
-1. LUKS container
-1. [Backup LUKS headers](https://wiki.archlinux.org/index.php/Dm-crypt/Device_encryption#Backup_and_restore)
-1. O/S Filesystem: [btrfs](https://wiki.archlinux.org/index.php/Btrfs) with [full disk encryption](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#Btrfs_subvolumes_with_swap) on both drives, including encrypted bootloader
+1. Create LUKS container
+1. Format O/S filesystem: [btrfs](https://wiki.archlinux.org/index.php/Btrfs) with [full disk encryption](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#Btrfs_subvolumes_with_swap) on both drives, including an encrypted bootloader
 
 ## OS
 

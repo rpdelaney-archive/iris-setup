@@ -14,7 +14,7 @@ Prepare the installation media: keyboard layout, system clock, and optimize the 
 # reflector --verbose --connection-timeout 3 --age --protocol https --protocol rsync --sort rate --sort score --save /etc/pacman.d/mirrorlist
 ```
 
-(No dm-crypt [drive preparation](https://wiki.archlinux.org/index.php/Dm-crypt/Drive_preparation) since the disk is blank and factory-new.)
+_(No dm-crypt [drive preparation](https://wiki.archlinux.org/index.php/Dm-crypt/Drive_preparation) since the disk is blank and factory-new.)_
 
 ## Create partitions
 
