@@ -5,13 +5,13 @@
 Vendor   | Type     |   Size    | Interface
 ---------|----------| ----------|----------
 ?        | Magnetic | 976.76 GB | PCI SATA
-WD       | Solid    | 244.19 GB | PCI NVMe
+WD       | Solid    | 244.19 GB | PCI M.2 NVme
 
 ## RAM
 
 Bank | Size     | Type | Speed
 -----|----------|------|---------
-0    | 8192 MB  | DDR4 | 2667 MHz 
+0    | 8192 MB  | DDR4 | 2667 MHz
 1    | -        | -    | -
 2    | 8192 MB  | DDR4 | 2667Mhz
 3    | -        | -    | -
@@ -22,7 +22,7 @@ Total RAM ~16GB
 
 Vendor | Model          | Clock   | Cores | Voltage
 -------|----------------|---------|-------|--------
-Intel  | Intel i7-9750H | 2475MHz | 8     | 0.800 
+Intel  | Intel i7-9750H | 2475MHz | 8     | 0.800
 
 ## BIOS
 
