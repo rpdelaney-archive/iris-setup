@@ -1,5 +1,7 @@
 # Laptop setup plan
 
+I'm calling it 'Iris' (after the ancient Greek goddess of the rainbow and messenger of the gods) because it has one of those stupid rainbow backlit keyboards.
+
 ## Hardware
 
 Hardware specs [here](./HARDWARE.md).
