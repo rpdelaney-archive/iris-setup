@@ -9,7 +9,7 @@ Prepare the installation media: keyboard layout, system clock, and optimize the 
 ```
 # loadkeys dvorak
 # timedatectl set-ntp true
-# pacman -Syu reflector
+# pacman -Sy reflector
 # cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist."$(date +%Y%m%d-%H%m%S)".bak
 # reflector --verbose --connection-timeout 3 --age 12 --protocol https --protocol rsync --sort rate --sort score --save /etc/pacman.d/mirrorlist
 ```
