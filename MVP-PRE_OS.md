@@ -63,14 +63,11 @@ Now we will create the following subvolumes:
 ```
 subvolid=5 (/dev/nvme0n1p1)
    ├── @ (mounted as /)
-   |       ├── /home (mounted @home subvolume)
    |       ├── /.snapshots (mounted @snapshots subvolume)
-   |       ├── /var/cache/pacman/pkg (nested subvolume)
-   |       ├── ... (other directories and nested subvolumes)
-   |       └──
+   |       ├── /home (mounted @home subvolume)
+   |       └── /var/cache/pacman/pkg (nested subvolume)
    ├── @snapshots (mounted as /.snapshots)
-   ├── @home (mounted as /home)
-   └── @... (additional subvolumes you wish to use as mount points)
+   └── @home (mounted as /home)
 ```
 
 1. [ ] First, create the top-level subvolumes:
