@@ -2,3 +2,4 @@
 default: true
 line_length: false
 MD032: false
+fenced-code-language: false
