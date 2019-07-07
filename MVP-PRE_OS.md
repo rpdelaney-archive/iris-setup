@@ -19,14 +19,19 @@ _(No dm-crypt [drive preparation](https://wiki.archlinux.org/index.php/Dm-crypt/
 ## Create partitions
 
 1. [ ] Create MBR partition tables: [GPT](https://wiki.archlinux.org/index.php/GPT)
-  - `/dev/nvme0n1p0` A swap partition of 32G
-  - `/dev/nvme0n1p1` A `/` partition for the rest, since we don't need EFI and we will be using btrfs subvolumes under LUKS
+
+```
+# gdisk /dev/nvem0n1
+```
+
+  - `/dev/nvme0n1p1` A swap partition (type hex code 8200) with first sector at 2048 and last sector at +32G
+  - `/dev/nvme0n1p2` A `/` partition (type hex code 8300) with first sector default and last sector default for the rest, since we don't need EFI and we will be using btrfs subvolumes under LUKS
 
 1. [ ] Activate swap
 
 ```
-mkswap /dev/nvme0n1p0
-swapon /dev/nvme0n1p0
+mkswap /dev/nvme0n1p1
+swapon /dev/nvme0n1p1
 ```
 
 ## Create LUKS container
@@ -34,7 +39,7 @@ swapon /dev/nvme0n1p0
 1. [ ] Format the LUKS container:
 
 ```
-# cryptsetup luksFormat /dev/nvme0n1p1
+# cryptsetup luksFormat /dev/nvme0n1p2
 ```
 
 1. [ ] [Backup LUKS headers](https://wiki.archlinux.org/index.php/Dm-crypt/Device_encryption#Backup_and_restore)
@@ -46,7 +51,7 @@ swapon /dev/nvme0n1p0
 Unlock the LUKS container and format it.
 
 ```
-# cryptsetup open --type luks1 /dev/nvme0n1p1 cryptroot
+# cryptsetup open --type luks1 /dev/nvme0n1p2 cryptroot
 # mkfs.btrfs -L root /dev/mapper/cryptroot
 ```
 
@@ -61,7 +66,7 @@ Mount the newly created filesystem with zstd compression.
 Now we will create the following subvolumes:
 
 ```
-subvolid=5 (/dev/nvme0n1p1)
+subvolid=5 (/dev/nvme0n1p2)
    ├── @ (mounted as /)
    |       ├── /.snapshots (mounted @snapshots subvolume)
    |       ├── /home (mounted @home subvolume)
@@ -116,10 +121,10 @@ We set `fs_passno 0` because btrfs filesystems do not need to be fsck'ed
 # <file system>     <dir>           <type>      <options>                       <dump>      <pass>
 
 # swap
-/dev/nvme0n1p0      none            swap        defaults                        0           0
+/dev/nvme0n1p1      none            swap        defaults                        0           0
 
 # root
-/dev/nvme0n1p1      /               btrfs       discard,compress=zstd,ssd       0           0
+/dev/nvme0n1p2      /               btrfs       discard,compress=zstd,ssd       0           0
 ```
 
 ### LUKS keyfile
