@@ -90,16 +90,40 @@ Now mount the top-level subvolumes:
 # mount -o compress=zstd,subvol=@snapshots /dev/mapper/cryptroot /mnt/.snapshots
 ```
 
-1. [ ] Finally, create nested subvolumes that we do **not** want to have snapshots of when taking snapshots of `/`.
+1. [ ] Create nested subvolumes that we do **not** want to have snapshots of when taking snapshots of `/`.
 
 ```
-# btrfs subvolume create /mnt/var/cache/pacman/pkg
-# btrfs subvolume create /mnt/var/abs
-# btrfs subvolume create /mnt/var/tmp
+# btrfs subvolume create /mnt/@var-abs
+# btrfs subvolume create /mnt/@var-tmp
+# btrfs subvolume create /mnt/@var-cache-pacman
+```
+
+1. [ ] Mount the nested subvolumes
+
+```
+# mount -o compress=zstd,subvol=@var-abs /dev/mapper/cryptroot /mnt/var/abs
+# mount -o compress=zstd,subvol=@var-tmp /dev/mapper/cryptroot /mnt/var/tmp
+# mount -o compress=zstd,subvol=@var-cache-pacman /dev/mapper/cryptroot /mnt/var/cache/pacman/pkg
 ```
 
 To see a list of current subvolumes: `btrfs subvolume list -p /`
 To delete a subvolume: `btrfs subvolume delete /path/to/subvolume`
+
+1. [ ] Add all the subvolumes to the fstab
+
+We set `fs_passno 0` because btrfs filesystems do not need to be fsck'ed
+
+```
+/etc/fstab
+---
+# <file system>     <dir>           <type>      <options>                       <dump>      <pass>
+
+# swap
+/dev/nvme0n1p0      none            swap        defaults                        0           0
+
+# root
+[ROOT_UUID]         /               btrfs       discard,compress=zstd,ssd       0           0
+```
 
 ### LUKS keyfile
 
@@ -143,9 +167,5 @@ HOOKS=(base systemd autodetect keyboard sd-vconsole modconf block sd-encrypt sd-
 `# mkinitcpio -p linux`
 
 We should only have to enter the container decryption passphrase once.
-
-## Bootloader
-
-[GRUB2](https://wiki.archlinux.org/index.php/GRUB) in BIOS mode (no UEFI)
 
 <!--- vim: nospell -->
