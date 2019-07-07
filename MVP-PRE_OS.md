@@ -39,7 +39,7 @@ swapon -L "SWAP"
 1. [ ] Format the LUKS container:
 
 ```
-# cryptsetup luksFormat --use-random --hash whirlpool --iter-time 5000 /dev/nvme0n1p2
+# cryptsetup luksFormat --type luks1 --use-random --hash whirlpool --iter-time 5000 /dev/nvme0n1p2
 ```
 
 1. [ ] [Backup LUKS headers](https://wiki.archlinux.org/index.php/Dm-crypt/Device_encryption#Backup_and_restore)
