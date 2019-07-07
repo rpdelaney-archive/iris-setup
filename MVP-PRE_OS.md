@@ -30,8 +30,8 @@ _(No dm-crypt [drive preparation](https://wiki.archlinux.org/index.php/Dm-crypt/
 1. [ ] Activate swap
 
 ```
-mkswap /dev/nvme0n1p1
-swapon /dev/nvme0n1p1
+mkswap -L "SWAP" /dev/nvme0n1p1
+swapon -L "SWAP"
 ```
 
 ## Create LUKS container
