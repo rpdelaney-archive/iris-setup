@@ -119,12 +119,12 @@ We set `fs_passno 0` because btrfs filesystems do not need to be fsck'ed
 /dev/nvme0n1p0      none            swap        defaults                        0           0
 
 # root
-[ROOT_UUID]         /               btrfs       discard,compress=zstd,ssd       0           0
+/dev/nvme0n1p1      /               btrfs       discard,compress=zstd,ssd       0           0
 ```
 
 ### LUKS keyfile
 
-1. [ ] Now we generate a LUKS keyfile to embed in GRUB.
+1. [ ] Now we generate a LUKS keyfile to embed in GRUB later.
 
 ```
 # dd bs=1024 count=4 if=/dev/random of=/crypto_keyfile.bin iflag=fullblock
