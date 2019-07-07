@@ -18,11 +18,11 @@ Prepare the installation media: keyboard layout, system clock, and optimize the 
 
 ## Create partitions
 
-[ ] Create MBR partition tables: [GPT](https://wiki.archlinux.org/index.php/GPT)
+1. [ ] Create MBR partition tables: [GPT](https://wiki.archlinux.org/index.php/GPT)
   - `/dev/nvme0n1p0` A swap partition of 32G
   - `/dev/nvme0n1p1` A `/` partition for the rest, since we don't need EFI and we will be using btrfs subvolumes under LUKS
 
-[ ] Activate swap
+1. [ ] Activate swap
 
 ```
 mkswap /dev/nvme0n1p0
@@ -31,13 +31,13 @@ swapon /dev/nvme0n1p0
 
 ## Create LUKS container
 
-[ ] Format the LUKS container:
+1. [ ] Format the LUKS container:
 
 ```
 # cryptsetup luksFormat /dev/nvme0n1p1
 ```
 
-[ ] [Backup LUKS headers](https://wiki.archlinux.org/index.php/Dm-crypt/Device_encryption#Backup_and_restore)
+1. [ ] [Backup LUKS headers](https://wiki.archlinux.org/index.php/Dm-crypt/Device_encryption#Backup_and_restore)
 
 ## O/S Filesystem
 
@@ -73,7 +73,7 @@ subvolid=5 (/dev/nvme0n1p1)
    └── @... (additional subvolumes you wish to use as mount points)
 ```
 
-[ ] First, create the top-level subvolumes:
+1. [ ] First, create the top-level subvolumes:
 
 ```
 # btrfs subvolume create /mnt/@
@@ -90,7 +90,7 @@ Now mount the top-level subvolumes:
 # mount -o compress=zstd,subvol=@snapshots /dev/mapper/cryptroot /mnt/.snapshots
 ```
 
-[ ] Finally, create nested subvolumes that we do **not** want to have snapshots of when taking snapshots of `/`.
+1. [ ] Finally, create nested subvolumes that we do **not** want to have snapshots of when taking snapshots of `/`.
 
 ```
 # btrfs subvolume create /mnt/var/cache/pacman/pkg
@@ -103,7 +103,7 @@ To delete a subvolume: `btrfs subvolume delete /path/to/subvolume`
 
 ### LUKS keyfile
 
-[ ] Now we generate a LUKS keyfile to embed in GRUB.
+1. [ ] Now we generate a LUKS keyfile to embed in GRUB.
 
 ```
 # dd bs=1024 count=4 if=/dev/random of=/crypto_keyfile.bin iflag=fullblock
@@ -114,7 +114,7 @@ To delete a subvolume: `btrfs subvolume delete /path/to/subvolume`
 
 ### Configure mkinitcpio.conf
 
-[ ] Include the keyfile in [mkinitcpio's FILES array](https://wiki.archlinux.org/index.php/Mkinitcpio#BINARIES_and_FILES):
+1. [ ] Include the keyfile in [mkinitcpio's FILES array](https://wiki.archlinux.org/index.php/Mkinitcpio#BINARIES_and_FILES):
 
 ```
 /etc/mkinitcpio.conf
@@ -122,7 +122,7 @@ To delete a subvolume: `btrfs subvolume delete /path/to/subvolume`
 FILES=(/crypto_keyfile.bin)
 ```
 
-[ ] Enable btrfs-check to run on the unmounted filesystem:
+1. [ ] Enable btrfs-check to run on the unmounted filesystem:
 
 ```
 /etc/mkinitcpio.conf
@@ -130,7 +130,7 @@ FILES=(/crypto_keyfile.bin)
 BINARIES=("/usr/bin/btrfs")
 ```
 
-[ ] Add the systemd hooks:
+1. [ ] Add the systemd hooks:
 
 ```
 /etc/mkinitcpio.conf
@@ -138,7 +138,7 @@ BINARIES=("/usr/bin/btrfs")
 HOOKS=(base systemd autodetect keyboard sd-vconsole modconf block sd-encrypt sd-lvm2 filesystems fsck)
 ```
 
-[ ] Finally, regenerate the initramfs:
+1. [ ] Finally, regenerate the initramfs:
 
 `# mkinitcpio -p linux`
 
