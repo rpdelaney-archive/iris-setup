@@ -59,6 +59,7 @@ This stuff is out of scope for this execution plan.
 
 See also: [privacytools.io](https://www.privacytools.io/)
 
+1. [ ] [Snapper](https://wiki.archlinux.org/index.php/Snapper)
 1. [ ] [ILoveCandy](https://www.reddit.com/r/archlinux/comments/6r8lk0/i_love_candydo_you/)
 1. [ ] Mirrorlist automation with [Reflector](https://wiki.archlinux.org/index.php/Reflector#Automation)
 1. [ ] [Activate](https://wiki.archlinux.org/index.php/Activating_Numlock_on_Bootup) NumLock on bootup
@@ -71,7 +72,6 @@ See also: [privacytools.io](https://www.privacytools.io/)
 1. [ ] [USBGuard](https://usbguard.github.io/)
 1. [ ] [Backlight](https://wiki.archlinux.org/index.php/Backlight) control using `light`
 1. [ ] [AppArmor](https://wiki.archlinux.org/index.php/AppArmor) for closed-source commercial stuff that I (a) don't completely trust and yet (b) don't want to run in a sandbox/VM
-1. [ ] btrfs filesystem on both drives for [easy backup and rollback](https://ramsdenj.com/2016/04/05/using-btrfs-for-easy-backup-and-rollback.html) using [Snapper](https://wiki.archlinux.org/index.php/Snapper) (also because shiny and new)
 1. [ ] [CPU frequency scaling](https://wiki.archlinux.org/index.php/CPU_frequency_scaling)
 1. [ ] Autostart management with [dex](https://www.archlinux.org/packages/community/any/dex/)
 1. [ ] [coreboot](https://coreboot.org/) or [libreboot](https://libreboot.org/)
