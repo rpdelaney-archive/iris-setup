@@ -10,14 +10,26 @@ Hardware specs [here](./HARDWARE.md).
 
 ### Pre-OS
 
-1. [ ] Partition tables: [GPT](https://wiki.archlinux.org/index.php/GPT)
-1. [ ] O/S Filesystem: [btrfs](https://wiki.archlinux.org/index.php/Btrfs) with [full disk encryption](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#Btrfs_subvolumes_with_swap) on both drives, including encrypted bootloader
-1. [ ] [Backup LUKS headers](https://wiki.archlinux.org/index.php/Dm-crypt/Device_encryption#Backup_and_restore)
+[Execution plan](./MVP-PRE_OS.md)
+
+1. Partition tables: [GPT](https://wiki.archlinux.org/index.php/GPT)
+   1. A `swap` partition of 32G
+   1. A `/` partition for the rest, since we don't need EFI and we will be using btrfs subvolumes under LUKS
+1. LUKS container
+1. [Backup LUKS headers](https://wiki.archlinux.org/index.php/Dm-crypt/Device_encryption#Backup_and_restore)
+1. O/S Filesystem: [btrfs](https://wiki.archlinux.org/index.php/Btrfs) with [full disk encryption](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#Btrfs_subvolumes_with_swap) on both drives, including encrypted bootloader
+
+## OS
+
+[Execution plan](./MVP-OS.md)
+
+1. [ ] [Archlinux](https://wiki.archlinux.org/index.php/Installation_guide)
 1. [ ] Bootloader: [GRUB2](https://wiki.archlinux.org/index.php/GRUB) in BIOS mode (no UEFI)[[1]](http://techrights.org/wiki/index.php/UEFI)[[2]](http://bytesmedia.co.uk/2012/07/17/richard-stallman-uefi/)[[3]](https://yarchive.net/comp/linux/efi.html)
 
 ## Post-OS
 
-1. [ ] [Archlinux](https://wiki.archlinux.org/index.php/Installation_guide)
+[Execution plan](./MVP-POST_OS.md)
+
 1. [ ] Keyboard layout in the [console](https://wiki.archlinux.org/index.php/Linux_console/Keyboard_configuration)
 1. [ ] Time synchronization: [Chrony](https://wiki.archlinux.org/index.php/Chrony)
 
