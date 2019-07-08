@@ -104,7 +104,7 @@ Next mount the top-level subvolumes:
 # btrfs subvolume create /mnt/var/cache/pacman/pkg
 ```
 
-1. [ ] Mount the nested subvolumes
+1. Mount the nested subvolumes
 
 ```
 # mount -o compress=zstd,subvol=@/var/abs /dev/mapper/cryptroot /mnt/var/abs
