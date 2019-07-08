@@ -6,7 +6,7 @@
 
 Mount the btrfs filesystem on `/mnt`.
 
-1. [ ] Pacstrap the filesystem: `pacstrap /mnt base btrfs-progs`
+1. [ ] Pacstrap the filesystem: `pacstrap /mnt base btrfs-progs grub vim`
 
 1. [ ] Generate the fstab: `genfstab -U /mnt >> /mnt/etc/fstab`.
 
