@@ -133,6 +133,8 @@ We set `fs_passno 0` because btrfs filesystems do not need to be fsck'ed
 
 ### LUKS keyfile
 
+**This should be done in the chroot after pacstrapping**
+
 1. [ ] Now we generate a LUKS keyfile to embed in GRUB later.
 
 ```
@@ -143,6 +145,8 @@ We set `fs_passno 0` because btrfs filesystems do not need to be fsck'ed
 ```
 
 ### Configure mkinitcpio.conf
+
+**This should be done in the chroot after pacstrapping**
 
 1. [ ] Include the keyfile in [mkinitcpio's FILES array](https://wiki.archlinux.org/index.php/Mkinitcpio#BINARIES_and_FILES):
 
