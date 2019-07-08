@@ -22,6 +22,7 @@ _(No dm-crypt [drive preparation](https://wiki.archlinux.org/index.php/Dm-crypt/
 
 ```
 # gdisk /dev/nvme0n1
+```
 
 Device         | Type Hex Code | Role      | First sector | Last sector
 ---------------|---------------| ----------|---------------------------
