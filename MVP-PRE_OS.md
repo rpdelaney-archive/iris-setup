@@ -115,23 +115,7 @@ Next mount the top-level subvolumes:
 # mount -o compress=zstd,subvol=@/var/cache/pacman/pkg /dev/mapper/cryptroot /mnt/var/cache/pacman/pkg
 ```
 
-To see a list of current subvolumes: `btrfs subvolume list -a /mnt`
-To delete a subvolume: `btrfs subvolume delete /path/to/subvolume`
-
-1. [ ] Add all the subvolumes to the fstab
-
-We set `fs_passno 0` because btrfs filesystems do not need to be fsck'ed
-
-```
-/etc/fstab
----
-# <file system>     <dir>           <type>      <options>                       <dump>      <pass>
-
-# swap
-/dev/nvme0n1p2      none            swap        defaults                        0           0
-
-# root
-/dev/nvme0n1p3      /               btrfs       discard,compress=zstd,ssd       0           0
-```
+- To see a list of current subvolumes: `btrfs subvolume list -a /mnt`
+- To delete a subvolume: `btrfs subvolume delete /path/to/subvolume`
 
 <!--- vim: set nospell: -->
