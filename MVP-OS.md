@@ -45,8 +45,17 @@ en_US.UTF-8 UTF-8
 
 [GRUB2](https://wiki.archlinux.org/index.php/GRUB) in BIOS mode (no UEFI)
 
-1. [ ] Install GRUB to `/dev/nvme0n1`
 1. [ ] Configure /etc/default/grub using additional arguments for encrypted boot as described [here](https://wiki.archlinux.org/index.php/GRUB#Additional_arguments) and [here](https://wiki.archlinux.org/index.php/GRUB#Encrypted_/boot)
+   - Uncomment `GRUB_ENABLE_CRYPTODISK=y`
+   - Set kernel parameters allowing the kernel module to decrypt the root partition:
+
+```
+/etc/default/grub
+---
+GRUB_CMDLINE_LINUX="rd.luks.name=_device-UUID_=cryptlvm"
+```
+
+1. [ ] Install GRUB `grub-install --target=i386-pc --recheck /dev/nvme0n1` <-- # failed here with "GPT partition label contains no BIOS boot partition"
 1. [ ] Finally, generate the GRUB configuration file
 
 ## Encrypt the swap
