@@ -107,9 +107,9 @@ Next mount the top-level subvolumes:
 1. [ ] Mount the nested subvolumes
 
 ```
-# mount -o compress=zstd,subvol=/var/abs /dev/mapper/cryptroot /mnt/var/abs
-# mount -o compress=zstd,subvol=/var/tmp /dev/mapper/cryptroot /mnt/var/tmp
-# mount -o compress=zstd,subvol=/var/cache/pacman/pkg /dev/mapper/cryptroot /mnt/var/cache/pacman/pkg
+# mount -o compress=zstd,subvol=@/var/abs /dev/mapper/cryptroot /mnt/var/abs
+# mount -o compress=zstd,subvol=@/var/tmp /dev/mapper/cryptroot /mnt/var/tmp
+# mount -o compress=zstd,subvol=@/var/cache/pacman/pkg /dev/mapper/cryptroot /mnt/var/cache/pacman/pkg
 ```
 
 To see a list of current subvolumes: `btrfs subvolume list -p /mnt`
