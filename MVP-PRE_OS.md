@@ -22,11 +22,12 @@ _(No dm-crypt [drive preparation](https://wiki.archlinux.org/index.php/Dm-crypt/
 
 ```
 # gdisk /dev/nvme0n1
-```
 
-  - `/dev/nvme0n1p1` A BIOS boot partition (type hex code ef02) with first sector at 2048 and last sector at +1M
-  - `/dev/nvme0n1p2` A swap partition (type hex code 8200) with first sector at default and last sector at +32G
-  - `/dev/nvme0n1p3` A `/` partition (type hex code 8300) with first sector default and last sector default for the rest, since we don't need EFI and we will be using btrfs subvolumes under LUKS
+Device         | Type Hex Code | Role      | First sector | Last sector
+---------------|---------------| ----------|---------------------------
+/dev/nvme0n1p1 | EF02          | BIOS boot | 2048         | +1M
+/dev/nvme0n1p2 | 8200          | Swap      | default      | +32G
+/dev/nvme0n1p3 | 8300          | Linux FS  | default      | default
 
 1. [ ] Activate swap
 
