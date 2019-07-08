@@ -82,25 +82,8 @@ Mount the newly created filesystem with zstd compression and create the director
 
 ```
 # btrfs subvolume create /mnt/@
-Create subvolume '/mnt/@'
 # btrfs subvolume create /mnt/@snapshots
-Create subvolume '/mnt/@snapshots'
 # btrfs subvolume create /mnt/@home
-Create subvolume '/mnt/@home'
-# umount /mnt
-```
-
-or:
-
-```
-# while read -r "$volume" ; do btrfs subvolume create "$volume" || break ; done
-@
-Create subvolume '/mnt/@'
-@snapshots
-Create subvolume '/mnt/@snapshots'
-@home
-Create subvolume '/mnt/@home'
-^D
 # umount /mnt
 ```
 
@@ -112,16 +95,6 @@ Next mount the top-level subvolumes:
 # mount -o compress=zstd,subvol=@home /dev/mapper/cryptroot /mnt/home
 # mkdir -p /mnt/.snapshots
 # mount -o compress=zstd,subvol=@snapshots /dev/mapper/cryptroot /mnt/.snapshots
-```
-
-or:
-
-```
-# while read -r volume ; do mount --verbose -o compress=zstd,subvol=@"$volume" /dev/mapper/cryptroot /mnt/"$volume" || break ; done
-
-mount: /dev/mapper/cryptroot mounted on /mnt
-home
-.snapshots
 ```
 
 1. [ ] Create nested subvolumes that we do **not** want to have snapshots of when taking snapshots of `/`.
