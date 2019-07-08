@@ -122,4 +122,4 @@ See also: [privacytools.io](https://www.privacytools.io/)
 1. [ ] Backlight control: xbacklight or light?
 1. [ ] Status bar: i3blocks or polybar?
 
-<!--- vim: nospell -->
+<!--- vim: set nospell: -->

@@ -69,3 +69,5 @@ GRUB_CMDLINE_LINUX="rd.luks.name=_device-UUID_=cryptlvm"
 ## Done :)
 
 `reboot` and go on to post-install stuffs.
+
+<!--- vim: set nospell: -->

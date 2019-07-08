@@ -181,4 +181,4 @@ HOOKS=(base systemd autodetect keyboard sd-vconsole modconf block sd-encrypt sd-
 
 We should only have to enter the container decryption passphrase once.
 
-<!--- vim: nospell -->
+<!--- vim: set nospell: -->
