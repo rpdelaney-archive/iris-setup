@@ -75,7 +75,6 @@ Mount the newly created filesystem with zstd compression and create the director
 # mount -o compress=zstd /dev/mapper/cryptroot /mnt
 # mkdir -p /mnt/home
 # mkdir -p /mnt/.snapshots
-# mkdir -p /mnt/var/cache/pacman/pkg
 ```
 
 1. [ ] Now, create the top-level subvolumes:
@@ -100,9 +99,10 @@ Next mount the top-level subvolumes:
 1. [ ] Create nested subvolumes that we do **not** want to have snapshots of when taking snapshots of `/`.
 
 ```
-# btrfs subvolume create /mnt/@var-abs
-# btrfs subvolume create /mnt/@var-tmp
-# btrfs subvolume create /mnt/@var-cache-pacman
+# btrfs subvolume create /mnt/var/abs
+# btrfs subvolume create /mnt/var/tmp
+# mkdir -p /mnt/var/cache/pacman
+# btrfs subvolume create /mnt/var/cache/pacman/pkg
 ```
 
 1. [ ] Mount the nested subvolumes
