@@ -99,6 +99,7 @@ Next mount the top-level subvolumes:
 1. [ ] Create nested subvolumes that we do **not** want to have snapshots of when taking snapshots of `/`.
 
 ```
+# mkdir -p /mnt/var
 # btrfs subvolume create /mnt/var/abs
 # btrfs subvolume create /mnt/var/tmp
 # mkdir -p /mnt/var/cache/pacman
