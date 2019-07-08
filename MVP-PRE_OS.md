@@ -112,7 +112,7 @@ Next mount the top-level subvolumes:
 # mount -o compress=zstd,subvol=@/var/cache/pacman/pkg /dev/mapper/cryptroot /mnt/var/cache/pacman/pkg
 ```
 
-To see a list of current subvolumes: `btrfs subvolume list -p /mnt`
+To see a list of current subvolumes: `btrfs subvolume list -a /mnt`
 To delete a subvolume: `btrfs subvolume delete /path/to/subvolume`
 
 1. [ ] Add all the subvolumes to the fstab
