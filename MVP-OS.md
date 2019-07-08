@@ -8,7 +8,9 @@ Mount the btrfs filesystem on `/mnt`.
 
 1. [ ] Pacstrap the filesystem: `pacstrap /mnt base btrfs-progs`
 
-1. [ ] Generate the fstab: `genfstab -U /mnt >> /mnt/etc/fstab`
+1. [ ] Generate the fstab: `genfstab -U /mnt >> /mnt/etc/fstab`.
+
+Note that it will create entries for all the subvolumes. Since btrfs subvolumes are recursively mounted automatically, we only need fstab entries for `/` and swap. Delete the others.
 
 Change root into the new system: `arch-chroot /mnt`
 
@@ -42,6 +44,18 @@ en_US.UTF-8 UTF-8
 ## Bootloader
 
 [GRUB2](https://wiki.archlinux.org/index.php/GRUB) in BIOS mode (no UEFI)
+
+1. [ ] Install GRUB to `/dev/nvme0n1`
+1. [ ] Configure /etc/default/grub using additional arguments for encrypted boot as described [here](https://wiki.archlinux.org/index.php/GRUB#Additional_arguments) and [here](https://wiki.archlinux.org/index.php/GRUB#Encrypted_/boot)
+1. [ ] Finally, generate the GRUB configuration file
+
+## Encrypt the swap
+
+1. [ ] Configure encrypted swap as described [here](https://wiki.archlinux.org/index.php/Dm-crypt/Swap_encryption)
+
+## Encrypt the boot partition
+
+1. [ ] Encrypt the boot partition as described [here](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#Encrypted_boot_partition_(GRUB))
 
 ## Done :)
 
