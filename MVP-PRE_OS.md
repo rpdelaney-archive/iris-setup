@@ -109,11 +109,8 @@ Next mount the top-level subvolumes:
 1. [ ] Mount the nested subvolumes
 
 ```
-# mkdir -p /mnt/var/abs
 # mount -o compress=zstd,subvol=@var-abs /dev/mapper/cryptroot /mnt/var/abs
-# mkdir -p /mnt/var/tmp
 # mount -o compress=zstd,subvol=@var-tmp /dev/mapper/cryptroot /mnt/var/tmp
-# mkdir -p /mnt/var/cache/pacman/pkg
 # mount -o compress=zstd,subvol=@var-cache-pacman /dev/mapper/cryptroot /mnt/var/cache/pacman/pkg
 ```
 
