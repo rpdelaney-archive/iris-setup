@@ -21,7 +21,7 @@ _(No dm-crypt [drive preparation](https://wiki.archlinux.org/index.php/Dm-crypt/
 1. [ ] Create MBR partition tables: [GPT](https://wiki.archlinux.org/index.php/GPT)
 
 ```
-# gdisk /dev/nvem0n1
+# gdisk /dev/nvme0n1
 ```
 
   - `/dev/nvme0n1p1` A swap partition (type hex code 8200) with first sector at 2048 and last sector at +32G
@@ -57,12 +57,6 @@ Unlock the LUKS container and format it.
 
 ### Create btrfs subvolumes
 
-Mount the newly created filesystem with zstd compression.
-
-```
-# mount -o compress=zstd /dev/mapper/cryptroot /mnt
-```
-
 Now we will create the following subvolumes:
 
 ```
@@ -75,21 +69,59 @@ subvolid=5 (/dev/nvme0n1p2)
    └── @home (mounted as /home)
 ```
 
-1. [ ] First, create the top-level subvolumes:
+Mount the newly created filesystem with zstd compression and create the directory structure.
+
+```
+# mount -o compress=zstd /dev/mapper/cryptroot /mnt
+# mkdir -p /mnt/home
+# mkdir -p /mnt/.snapshots
+# mkdir -p /mnt/var/cache/pacman/pkg
+```
+
+1. [ ] Now, create the top-level subvolumes:
 
 ```
 # btrfs subvolume create /mnt/@
+Create subvolume '/mnt/@'
 # btrfs subvolume create /mnt/@snapshots
+Create subvolume '/mnt/@snapshots'
 # btrfs subvolume create /mnt/@home
-```
-
-Now mount the top-level subvolumes:
-
-```
+Create subvolume '/mnt/@home'
 # umount /mnt
+```
+
+or:
+
+```
+# while read -r "$volume" ; do btrfs subvolume create "$volume" || break ; done
+@
+Create subvolume '/mnt/@'
+@snapshots
+Create subvolume '/mnt/@snapshots'
+@home
+Create subvolume '/mnt/@home'
+^D
+# umount /mnt
+```
+
+Next mount the top-level subvolumes:
+
+```
 # mount -o compress=zstd,subvol=@ /dev/mapper/cryptroot /mnt
+# mkdir -p /mnt/home
 # mount -o compress=zstd,subvol=@home /dev/mapper/cryptroot /mnt/home
+# mkdir -p /mnt/.snapshots
 # mount -o compress=zstd,subvol=@snapshots /dev/mapper/cryptroot /mnt/.snapshots
+```
+
+or:
+
+```
+# while read -r volume ; do mount --verbose -o compress=zstd,subvol=@"$volume" /dev/mapper/cryptroot /mnt/"$volume" || break ; done
+
+mount: /dev/mapper/cryptroot mounted on /mnt
+home
+.snapshots
 ```
 
 1. [ ] Create nested subvolumes that we do **not** want to have snapshots of when taking snapshots of `/`.
@@ -103,8 +135,11 @@ Now mount the top-level subvolumes:
 1. [ ] Mount the nested subvolumes
 
 ```
+# mkdir -p /mnt/var/abs
 # mount -o compress=zstd,subvol=@var-abs /dev/mapper/cryptroot /mnt/var/abs
+# mkdir -p /mnt/var/tmp
 # mount -o compress=zstd,subvol=@var-tmp /dev/mapper/cryptroot /mnt/var/tmp
+# mkdir -p /mnt/var/cache/pacman/pkg
 # mount -o compress=zstd,subvol=@var-cache-pacman /dev/mapper/cryptroot /mnt/var/cache/pacman/pkg
 ```
 
