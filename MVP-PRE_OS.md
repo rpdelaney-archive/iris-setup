@@ -69,12 +69,10 @@ subvolid=5 (/dev/nvme0n1p2)
    └── @home (mounted as /home)
 ```
 
-Mount the newly created filesystem with zstd compression and create the directory structure.
+Mount the newly created filesystem with zstd compression.
 
 ```
 # mount -o compress=zstd /dev/mapper/cryptroot /mnt
-# mkdir -p /mnt/home
-# mkdir -p /mnt/.snapshots
 ```
 
 1. [ ] Now, create the top-level subvolumes:
