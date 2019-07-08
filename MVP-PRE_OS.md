@@ -25,7 +25,7 @@ _(No dm-crypt [drive preparation](https://wiki.archlinux.org/index.php/Dm-crypt/
 ```
 
 Device         | Type Hex Code | Role      | First sector | Last sector
----------------|---------------| ----------|---------------------------
+---------------|---------------| ----------|--------------|------------
 /dev/nvme0n1p1 | EF02          | BIOS boot | 2048         | +1M
 /dev/nvme0n1p2 | 8200          | Swap      | default      | +32G
 /dev/nvme0n1p3 | 8300          | Linux FS  | default      | default
