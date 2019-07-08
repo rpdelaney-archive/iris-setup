@@ -24,13 +24,14 @@ _(No dm-crypt [drive preparation](https://wiki.archlinux.org/index.php/Dm-crypt/
 # gdisk /dev/nvme0n1
 ```
 
-  - `/dev/nvme0n1p1` A swap partition (type hex code 8200) with first sector at 2048 and last sector at +32G
-  - `/dev/nvme0n1p2` A `/` partition (type hex code 8300) with first sector default and last sector default for the rest, since we don't need EFI and we will be using btrfs subvolumes under LUKS
+  - `/dev/nvme0n1p1` A BIOS boot partition (type hex code ef02) with first sector at 2048 and last sector at +1M
+  - `/dev/nvme0n1p2` A swap partition (type hex code 8200) with first sector at default and last sector at +32G
+  - `/dev/nvme0n1p3` A `/` partition (type hex code 8300) with first sector default and last sector default for the rest, since we don't need EFI and we will be using btrfs subvolumes under LUKS
 
 1. [ ] Activate swap
 
 ```
-mkswap -L "SWAP" /dev/nvme0n1p1
+mkswap -L "SWAP" /dev/nvme0n1p2
 swapon -L "SWAP"
 ```
 
@@ -39,7 +40,7 @@ swapon -L "SWAP"
 1. [ ] Format the LUKS container:
 
 ```
-# cryptsetup luksFormat --type luks1 --use-random --hash whirlpool --iter-time 5000 /dev/nvme0n1p2
+# cryptsetup luksFormat --type luks1 --use-random --hash whirlpool --iter-time 5000 /dev/nvme0n1p3
 ```
 
 1. [ ] [Backup LUKS headers](https://wiki.archlinux.org/index.php/Dm-crypt/Device_encryption#Backup_and_restore)
@@ -51,7 +52,7 @@ swapon -L "SWAP"
 Unlock the LUKS container and format it.
 
 ```
-# cryptsetup open --type luks1 /dev/nvme0n1p2 cryptroot
+# cryptsetup open --type luks1 /dev/nvme0n1p3 cryptroot
 # mkfs.btrfs -L root /dev/mapper/cryptroot
 ```
 
@@ -60,7 +61,7 @@ Unlock the LUKS container and format it.
 Now we will create the following subvolumes:
 
 ```
-subvolid=5 (/dev/nvme0n1p2)
+subvolid=5 (/dev/nvme0n1p3)
    ├── @ (mounted as /)
    |       ├── /.snapshots (mounted @snapshots subvolume)
    |       ├── /home (mounted @home subvolume)
@@ -125,10 +126,10 @@ We set `fs_passno 0` because btrfs filesystems do not need to be fsck'ed
 # <file system>     <dir>           <type>      <options>                       <dump>      <pass>
 
 # swap
-/dev/nvme0n1p1      none            swap        defaults                        0           0
+/dev/nvme0n1p2      none            swap        defaults                        0           0
 
 # root
-/dev/nvme0n1p2      /               btrfs       discard,compress=zstd,ssd       0           0
+/dev/nvme0n1p3      /               btrfs       discard,compress=zstd,ssd       0           0
 ```
 
 ### LUKS keyfile
@@ -141,7 +142,7 @@ We set `fs_passno 0` because btrfs filesystems do not need to be fsck'ed
 # dd bs=1024 count=4 if=/dev/random of=/crypto_keyfile.bin iflag=fullblock
 # chmod 000 /crypto_keyfile.bin
 # chmod 600 /boot/initramfs-linux*
-# cryptsetup luksAddKey /dev/nvme0n1p2 /crypto_keyfile.bin
+# cryptsetup luksAddKey /dev/nvme0n1p3 /crypto_keyfile.bin
 ```
 
 ### Configure mkinitcpio.conf
