@@ -100,7 +100,7 @@ GRUB_CMDLINE_LINUX="rd.luks.name=_root-device-UUID_=cryptlvm resume=UUID=_uuid-o
 ```
 
 1. [ ] Install GRUB `grub-install --target=i386-pc --recheck /dev/nvme0n1`
-1. [ ] Finally, generate the GRUB configuration file
+1. [ ] Finally, generate the GRUB configuration file `grub-mkconfig -o /boot/grub/grub.cfg`
 
 ## Encrypt the swap
 
