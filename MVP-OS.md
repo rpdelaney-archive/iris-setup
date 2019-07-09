@@ -99,7 +99,7 @@ We should only have to enter the container decryption passphrase once.
 GRUB_CMDLINE_LINUX="rd.luks.name=_root-device-UUID_=cryptlvm resume=UUID=_uuid-of-swap-partition_"
 ```
 
-1. [ ] Install GRUB `grub-install --target=i386-pc --recheck /dev/nvme0n1` <-- # failed here with "GPT partition label contains no BIOS boot partition"
+1. [ ] Install GRUB `grub-install --target=i386-pc --recheck /dev/nvme0n1`
 1. [ ] Finally, generate the GRUB configuration file
 
 ## Encrypt the swap
