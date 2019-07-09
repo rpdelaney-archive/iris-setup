@@ -87,6 +87,8 @@ HOOKS=(base systemd autodetect keyboard sd-vconsole modconf block sd-encrypt sd-
 
 We should only have to enter the container decryption passphrase once.
 
+### GRUB
+
 1. [ ] Configure /etc/default/grub using additional arguments for encrypted boot as described [here](https://wiki.archlinux.org/index.php/GRUB#Additional_arguments) and [here](https://wiki.archlinux.org/index.php/GRUB#Encrypted_/boot)
    - Uncomment `GRUB_ENABLE_CRYPTODISK=y`
    - Set kernel parameters allowing the kernel module to decrypt the root partition:
