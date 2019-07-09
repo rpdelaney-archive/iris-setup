@@ -78,7 +78,7 @@ BINARIES=("/usr/bin/btrfs")
 ```
 /etc/mkinitcpio.conf
 ---
-HOOKS=(base systemd autodetect keyboard sd-vconsole modconf block sd-encrypt sd-lvm2 filesystems fsck)
+HOOKS=(base systemd autodetect keyboard sd-vconsole modconf resume block sd-encrypt sd-lvm2 filesystems fsck)
 ```
 
 1. [ ] Finally, regenerate the initramfs:
