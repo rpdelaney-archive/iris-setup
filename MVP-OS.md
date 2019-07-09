@@ -96,7 +96,7 @@ We should only have to enter the container decryption passphrase once.
 ```
 /etc/default/grub
 ---
-GRUB_CMDLINE_LINUX="rd.luks.name=_device-UUID_=cryptlvm"
+GRUB_CMDLINE_LINUX="rd.luks.name=_root-device-UUID_=cryptlvm resume=UUID=_uuid-of-swap-partition_"
 ```
 
 1. [ ] Install GRUB `grub-install --target=i386-pc --recheck /dev/nvme0n1` <-- # failed here with "GPT partition label contains no BIOS boot partition"
