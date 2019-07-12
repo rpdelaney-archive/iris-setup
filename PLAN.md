@@ -92,6 +92,7 @@ See also: [privacytools.io](https://www.privacytools.io/)
 1. [ ] Maybe [archstrike](https://archstrike.org/)
 1. [ ] Local mail delivery using [Postfix](https://wiki.archlinux.org/index.php/Postfix)
 1. [ ] Use [systemd timers](https://wiki.archlinux.org/index.php/Systemd/Timers#As_a_cron_replacement) over cron
+1. [ ] Pimp out GRUB with [fancy colors](https://www.gnu.org/software/grub/manual/grub/html_node/Theme-file-format.html) and [terminal candy](https://wiki.archlinux.org/index.php/GRUB/Tips_and_tricks#Visual_configuration)
 
 ### Maintenance
 
