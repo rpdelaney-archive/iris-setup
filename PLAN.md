@@ -80,6 +80,7 @@ See also: [privacytools.io](https://www.privacytools.io/)
    * [ ] [DNSCrypt](https://wiki.archlinux.org/index.php/Dnscrypt-proxy)
    * [ ] [DNSSEC](https://wiki.archlinux.org/index.php/DNSSEC)
    * [ ] Swiss Privacy Foundation [DNS Servers](https://web.archive.org/web/20140209065424/http://anonymous-proxy-servers.net/wiki/index.php/Censorship-free_DNS_servers)
+1. [ ] [zswap](https://wiki.archlinux.org/index.php/Zswap)
 1. [ ] [USBGuard](https://usbguard.github.io/)
 1. [ ] [Backlight](https://wiki.archlinux.org/index.php/Backlight) control using `light`
 1. [ ] [AppArmor](https://wiki.archlinux.org/index.php/AppArmor) for closed-source commercial stuff that I (a) don't completely trust and yet (b) don't want to run in a sandbox/VM
