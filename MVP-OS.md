@@ -44,7 +44,11 @@ en_US.UTF-8 UTF-8
 
 [GRUB2](https://wiki.archlinux.org/index.php/GRUB) in BIOS mode (no UEFI)
 
-### LUKS keyfile
+### Configure mkinitcpio.conf
+
+We need to configure and recreate the initramfs.
+
+#### LUKS keyfile
 
 1. [ ] Now we generate a LUKS keyfile to embed in GRUB
 
@@ -54,8 +58,6 @@ en_US.UTF-8 UTF-8
 # chmod 600 /boot/initramfs-linux*
 # cryptsetup luksAddKey /dev/nvme0n1p3 /crypto_keyfile.bin
 ```
-
-### Configure mkinitcpio.conf
 
 1. [ ] Include the keyfile in [mkinitcpio's FILES array](https://wiki.archlinux.org/index.php/Mkinitcpio#BINARIES_and_FILES):
 
@@ -73,6 +75,8 @@ FILES=(/crypto_keyfile.bin)
 BINARIES=("/usr/bin/btrfs")
 ```
 
+#### System hooks
+
 1. [ ] Add the systemd hooks:
 
 ```
@@ -80,6 +84,8 @@ BINARIES=("/usr/bin/btrfs")
 ---
 HOOKS=(base systemd autodetect keyboard sd-vconsole modconf resume block sd-encrypt sd-lvm2 filesystems fsck)
 ```
+
+#### Generate initramfs
 
 1. [ ] Finally, regenerate the initramfs:
 
