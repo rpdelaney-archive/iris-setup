@@ -1,6 +1,8 @@
 # OS installation
 
-[Installation guide](https://wiki.archlinuxorg/index.php/Installation_guide)
+_Continued from [Pre-OS installation plan](https://github.com/rpdelaney/iris-setup/blob/master/MVP-PRE_OS.md)_
+
+[Archlinux Installation guide](https://wiki.archlinuxorg/index.php/Installation_guide)
 
 ## Bootstrapping
 
