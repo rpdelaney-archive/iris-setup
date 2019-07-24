@@ -74,7 +74,7 @@ Take a btrfs snapshot here.
 1. [ ] [Kernel patchset](https://wiki.archlinux.org/index.php/Kernel#Patches_and_patchsets)?
 1. [ ] Filesystem: autodefrag or no autodefrag?
 1. [ ] Shell: bash or zsh?
-1. [ ] Terminal emulator: i3-gaps or sway?
+1. [ ] Windowing system: X11 (i3-gaps) or Wayland (sway)?
 1. [ ] cli file manager: ranger or vifm?
 1. [ ] Screenshots: scrot or flameshot?
 1. [ ] Launcher: dmenu or rofi?
