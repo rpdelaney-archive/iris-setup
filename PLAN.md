@@ -68,6 +68,18 @@ Take a btrfs snapshot here.
 1. [ ] Mouse sensitivity, keyboard repeat rate etc using `xorg-xset`
 1. [ ] Multi-head display configuration using [arandr](https://wiki.archlinux.org/index.php/Multihead#Configuration_using_arandr)
 
+## Decisions
+
+1. [ ] BIOS: coreboot or libreboot? (Is this hardware even supported by either?)
+1. [ ] Filesystem: autodefrag or no autodefrag?
+1. [ ] Shell: bash or zsh?
+1. [ ] Terminal emulator: i3-gaps or sway?
+1. [ ] cli file manager: ranger or vifm?
+1. [ ] Screenshots: scrot or flameshot?
+1. [ ] Launcher: dmenu or rofi?
+1. [ ] Backlight control: xbacklight or light?
+1. [ ] Status bar: i3blocks or polybar?
+
 ## "Nice to have"s
 
 This stuff is out of scope for this execution plan.
@@ -116,17 +128,5 @@ See also: [privacytools.io](https://www.privacytools.io/)
    * [ ] Research and consider MuQSS and BFQ
    * [ ] [Scheduling policies](https://ck.fandom.com/wiki/SchedulingPolicies)
 1. [ ] [zram](https://wiki.archlinux.org/index.php/Improving_performance#Zram_or_zswap) ?
-
-## Decisions
-
-1. [ ] BIOS: coreboot or libreboot? (Is this hardware even supported by either?)
-1. [ ] Filesystem: autodefrag or no autodefrag?
-1. [ ] Shell: bash or zsh?
-1. [ ] Terminal emulator: i3-gaps or sway?
-1. [ ] cli file manager: ranger or vifm?
-1. [ ] Screenshots: scrot or flameshot?
-1. [ ] Launcher: dmenu or rofi?
-1. [ ] Backlight control: xbacklight or light?
-1. [ ] Status bar: i3blocks or polybar?
 
 <!--- vim: set nospell: -->
