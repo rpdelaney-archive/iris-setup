@@ -34,6 +34,8 @@ Execution plan (TBD)
 
 ## Post-MVP Goals
 
+Take a btrfs snapshot here.
+
 ### Pre-WM
 
 1. [ ] Separate `ryan` user role in sudoers group
@@ -49,7 +51,7 @@ Execution plan (TBD)
    * [ ] No remote access as root
    * [ ] Public key authentication only
    * [ ] Passworded BIOS
-   * Consider disabling the camera by [blacklisting](https://wiki.archlinux.org/index.php/Kernel_module#Blacklisting) the `uvcvideo` module
+   * Consider disabling the front-facing camera by [blacklisting](https://wiki.archlinux.org/index.php/Kernel_module#Blacklisting) the `uvcvideo` module
 1. [ ] Domain name resolution: [dnsmasq](https://wiki.archlinux.org/index.php/Dnsmasq)
 1. [ ] Network manager: [Wicd](https://wiki.archlinux.org/index.php/Wicd)
 1. [ ] NVidia [graphics drivers](https://wiki.archlinux.org/index.php/NVIDIA)
@@ -57,6 +59,8 @@ Execution plan (TBD)
 1. [ ] Touchpad support with [libinput](https://wiki.archlinux.org/index.php/Libinput)
 
 ### Post-WM
+
+Take a btrfs snapshot here.
 
 1. [ ] WM: [i3-gaps](https://wiki.archlinux.org/index.php/I3)
 1. [ ] Terminal emulator: kitty
@@ -115,6 +119,7 @@ See also: [privacytools.io](https://www.privacytools.io/)
 
 ## Decisions
 
+1. [ ] BIOS: coreboot or libreboot? (Is this hardware even supported by either?)
 1. [ ] Filesystem: autodefrag or no autodefrag?
 1. [ ] Shell: bash or zsh?
 1. [ ] Terminal emulator: i3-gaps or sway?
