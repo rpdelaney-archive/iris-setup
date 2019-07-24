@@ -111,7 +111,7 @@ See also: [privacytools.io](https://www.privacytools.io/)
 1. [ ] Use [systemd timers](https://wiki.archlinux.org/index.php/Systemd/Timers#As_a_cron_replacement) over cron
 1. [ ] Pimp out GRUB with [fancy colors](https://www.gnu.org/software/grub/manual/grub/html_node/Theme-file-format.html) and [terminal candy](https://wiki.archlinux.org/index.php/GRUB/Tips_and_tricks#Visual_configuration)
 
-### Maintenance
+## Maintenance
 
 [System maintenance](https://wiki.archlinux.org/index.php/System_maintenance)
 
@@ -119,7 +119,7 @@ See also: [privacytools.io](https://www.privacytools.io/)
 1. [ ] Periodically [remove orphaned packages](https://wiki.archlinux.org/index.php/Pacman/Tips_and_tricks#Removing_unused_packages_(orphans))
 1. [ ] `pacdiff` or [something like it](https://wiki.archlinux.org/index.php/Pacman/Pacnew_and_Pacsave#pacdiff)
 
-### Optimizations
+## Optimizations
 
 [Improving performance](https://wiki.archlinux.org/index.php/Improving_performance)
 
