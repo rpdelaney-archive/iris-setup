@@ -71,6 +71,7 @@ Take a btrfs snapshot here.
 ## Decisions
 
 1. [ ] BIOS: coreboot or libreboot? (Is this hardware even supported by either?)
+1. [ ] [Kernel patchset](https://wiki.archlinux.org/index.php/Kernel#Patches_and_patchsets)?
 1. [ ] Filesystem: autodefrag or no autodefrag?
 1. [ ] Shell: bash or zsh?
 1. [ ] Terminal emulator: i3-gaps or sway?
