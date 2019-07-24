@@ -63,10 +63,16 @@ Take a btrfs snapshot here.
 Take a btrfs snapshot here.
 
 1. [ ] WM: [i3-gaps](https://wiki.archlinux.org/index.php/I3)
-1. [ ] Terminal emulator: kitty
+1. [ ] Terminal emulator: [kitty](https://sw.kovidgoyal.net/kitty/)
 1. [ ] Keyboard layout in [Xorg](https://wiki.archlinux.org/index.php/Xorg/Keyboard_configuration) using `xorg-setxkbmap`
 1. [ ] Mouse sensitivity, keyboard repeat rate etc using `xorg-xset`
 1. [ ] Multi-head display configuration using [arandr](https://wiki.archlinux.org/index.php/Multihead#Configuration_using_arandr)
+1. [ ] Secure DNS resolution:
+   * [ ] [DNSCrypt](https://wiki.archlinux.org/index.php/Dnscrypt-proxy)
+   * [ ] [DNSSEC](https://wiki.archlinux.org/index.php/DNSSEC)
+   * [ ] Swiss Privacy Foundation [DNS Servers](https://web.archive.org/web/20140209065424/http://anonymous-proxy-servers.net/wiki/index.php/Censorship-free_DNS_servers)
+1. [ ] Mirrorlist automation with [Reflector](https://wiki.archlinux.org/index.php/Reflector#Automation)
+1. [ ] CPU [microcode](https://wiki.archlinux.org/index.php/Microcode)
 
 ## Decisions
 
@@ -89,14 +95,8 @@ See also: [privacytools.io](https://www.privacytools.io/)
 
 1. [ ] [Snapper](https://wiki.archlinux.org/index.php/Snapper)
 1. [ ] [ILoveCandy](https://www.reddit.com/r/archlinux/comments/6r8lk0/i_love_candydo_you/)
-1. [ ] Mirrorlist automation with [Reflector](https://wiki.archlinux.org/index.php/Reflector#Automation)
 1. [ ] [Activate](https://wiki.archlinux.org/index.php/Activating_Numlock_on_Bootup) NumLock on bootup
-1. [ ] CPU [microcode](https://wiki.archlinux.org/index.php/Microcode)
 1. [ ] Local NordVPN connection with non-VPN traffic dropped by `iptables`
-1. [ ] Secure DNS resolution:
-   * [ ] [DNSCrypt](https://wiki.archlinux.org/index.php/Dnscrypt-proxy)
-   * [ ] [DNSSEC](https://wiki.archlinux.org/index.php/DNSSEC)
-   * [ ] Swiss Privacy Foundation [DNS Servers](https://web.archive.org/web/20140209065424/http://anonymous-proxy-servers.net/wiki/index.php/Censorship-free_DNS_servers)
 1. [ ] [zswap](https://wiki.archlinux.org/index.php/Zswap)
 1. [ ] [USBGuard](https://usbguard.github.io/)
 1. [ ] [Backlight](https://wiki.archlinux.org/index.php/Backlight) control using `light`
