@@ -10,7 +10,7 @@ Hardware specs [here](./HARDWARE.md).
 
 ### Pre-OS
 
-[Execution plan](https://gist.github.com/rpdelaney/f4b789d7b9c6b0fba24c524f5829cc04#file-mvp-pre_os-md)
+[Pre-OS Installation Plan](https://github.com/rpdelaney/iris-setup/blob/master/MVP-PRE_OS.md)
 
 1. Partition the disks
    1. A `swap` partition of 32G
@@ -20,7 +20,7 @@ Hardware specs [here](./HARDWARE.md).
 
 ### OS
 
-[Execution plan](https://gist.github.com/rpdelaney/f4b789d7b9c6b0fba24c524f5829cc04#file-mvp-os-md)
+[OS Installation Plan](https://github.com/rpdelaney/iris-setup/blob/master/MVP-OS.md)
 
 1. [ ] [Archlinux](https://wiki.archlinux.org/index.php/Installation_guide)
 1. [ ] Bootloader: [GRUB2](https://wiki.archlinux.org/index.php/GRUB) in BIOS mode (no UEFI)[[1]](http://techrights.org/wiki/index.php/UEFI)[[2]](http://bytesmedia.co.uk/2012/07/17/richard-stallman-uefi/)[[3]](https://yarchive.net/comp/linux/efi.html)
