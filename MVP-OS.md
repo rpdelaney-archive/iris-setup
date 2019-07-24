@@ -115,6 +115,7 @@ GRUB_CMDLINE_LINUX="rd.luks.name=$UUID_NVME=cryptlvm root=UUID=$UUID_ROOT resume
 ## Encrypt the swap
 
 1. [ ] Configure encrypted swap as described [here](https://wiki.archlinux.org/index.php/Dm-crypt/Swap_encryption)
+   - _I think we did this already?_
 
 ## Encrypt the boot partition
 
