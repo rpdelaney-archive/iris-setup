@@ -80,7 +80,7 @@ Take a btrfs snapshot here.
 1. [ ] [Kernel patchset](https://wiki.archlinux.org/index.php/Kernel#Patches_and_patchsets)?
 1. [ ] Filesystem: autodefrag or no autodefrag?
 1. [ ] Shell: bash or zsh?
-1. [ ] Windowing system: X11 (i3-gaps) or Wayland (sway)?
+1. [ ] Windowing system: X11 ([i3-gaps](https://github.com/Airblader/i3)) or Wayland ([sway](https://swaywm.org/))?
 1. [ ] cli file manager: ranger or vifm?
 1. [ ] Screenshots: scrot or flameshot?
 1. [ ] Launcher: dmenu or rofi?
@@ -89,14 +89,14 @@ Take a btrfs snapshot here.
 
 ## "Nice to have"s
 
-This stuff is out of scope for this execution plan.
+This stuff is out of scope for this execution plan. We might not want all of it either. This ranges from "I'll get to it eventually" to "I'll look into it and decide if I want it at all eventually".
 
 See also: [privacytools.io](https://www.privacytools.io/)
 
 1. [ ] [Snapper](https://wiki.archlinux.org/index.php/Snapper)
 1. [ ] [ILoveCandy](https://www.reddit.com/r/archlinux/comments/6r8lk0/i_love_candydo_you/)
 1. [ ] [Activate](https://wiki.archlinux.org/index.php/Activating_Numlock_on_Bootup) NumLock on bootup
-1. [ ] Local NordVPN connection with non-VPN traffic dropped by `iptables`
+1. [ ] Local consumer VPN connection with non-VPN traffic dropped by `iptables`
 1. [ ] [zswap](https://wiki.archlinux.org/index.php/Zswap)
 1. [ ] [USBGuard](https://usbguard.github.io/)
 1. [ ] [Backlight](https://wiki.archlinux.org/index.php/Backlight) control using `light`
@@ -104,7 +104,7 @@ See also: [privacytools.io](https://www.privacytools.io/)
 1. [ ] [CPU frequency scaling](https://wiki.archlinux.org/index.php/CPU_frequency_scaling)
 1. [ ] Autostart management with [dex](https://www.archlinux.org/packages/community/any/dex/)
 1. [ ] [coreboot](https://coreboot.org/) or [libreboot](https://libreboot.org/)
-1. [ ] Bootloader partition / decryption headers on [separate device](https://wiki.archlinux.org/index.php/Dm-crypt/Specialties#Encrypted_system_using_a_detached_LUKS_header)
+1. [ ] Bootloader decryption headers on [separate device](https://wiki.archlinux.org/index.php/Dm-crypt/Specialties#Encrypted_system_using_a_detached_LUKS_header)
 1. [ ] [Hard disk shock protection](https://wiki.archlinux.org/index.php/Laptop#Hard_disk_shock_protection)
 1. [ ] Maybe [archstrike](https://archstrike.org/)
 1. [ ] Local mail delivery using [Postfix](https://wiki.archlinux.org/index.php/Postfix)
