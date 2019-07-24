@@ -1,5 +1,7 @@
 # Pre-OS prep
 
+Review the [hardware](https://github.com/rpdelaney/iris-setup/blob/master/HARDWARE.md).
+
 We're putting the O/S on the NVME disk, `/dev/nvme0n1`.
 
 ## Installation media
