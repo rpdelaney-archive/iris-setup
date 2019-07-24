@@ -18,16 +18,16 @@ Hardware specs [here](./HARDWARE.md).
 1. Create LUKS container
 1. Format O/S filesystem: [btrfs](https://wiki.archlinux.org/index.php/Btrfs) with [full disk encryption](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#Btrfs_subvolumes_with_swap) on both drives, including an encrypted bootloader
 
-## OS
+### OS
 
 [Execution plan](https://gist.github.com/rpdelaney/f4b789d7b9c6b0fba24c524f5829cc04#file-mvp-os-md)
 
 1. [ ] [Archlinux](https://wiki.archlinux.org/index.php/Installation_guide)
 1. [ ] Bootloader: [GRUB2](https://wiki.archlinux.org/index.php/GRUB) in BIOS mode (no UEFI)[[1]](http://techrights.org/wiki/index.php/UEFI)[[2]](http://bytesmedia.co.uk/2012/07/17/richard-stallman-uefi/)[[3]](https://yarchive.net/comp/linux/efi.html)
 
-## Post-OS
+### Post-OS
 
-[Execution plan](nothing)
+Execution plan (TBD)
 
 1. [ ] Keyboard layout in the [console](https://wiki.archlinux.org/index.php/Linux_console/Keyboard_configuration)
 1. [ ] Time synchronization: [Chrony](https://wiki.archlinux.org/index.php/Chrony)
@@ -106,7 +106,7 @@ See also: [privacytools.io](https://www.privacytools.io/)
 
 [Improving performance](https://wiki.archlinux.org/index.php/Improving_performance)
 
-1. [ ] systemd boot time (`systemd-analyze)
+1. [ ] systemd boot time (`systemd-analyze`)
    * [ ] [Systemd optimizations](https://freedesktop.org/wiki/Software/systemd/Optimizations/)
 1. [ ] Consider a different [Kernel patchset](https://wiki.archlinux.org/index.php/Kernel#Patches_and_patchsets)
    * [ ] Research and consider MuQSS and BFQ
