@@ -89,9 +89,7 @@ HOOKS=(base systemd autodetect keyboard sd-vconsole modconf resume block sd-encr
 
 #### Generate initramfs
 
-1. [ ] Finally, regenerate the initramfs:
-
-`# mkinitcpio -p linux`
+1. [ ] Finally, regenerate the initramfs: `# mkinitcpio -p linux`
 
 We should only have to enter the container decryption passphrase once.
 
