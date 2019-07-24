@@ -109,8 +109,8 @@ UUID_SWAP=""    # UUID of swap partition (/dev/nvme0n1p1)
 GRUB_CMDLINE_LINUX="rd.luks.name=$UUID_NVME=cryptlvm root=UUID=$UUID_ROOT resume=UUID=$UUID_SWAP"
 ```
 
-1. [ ] Install GRUB `grub-install --target=i386-pc --recheck /dev/nvme0n1`
-1. [ ] Finally, generate the GRUB configuration file `grub-mkconfig -o /boot/grub/grub.cfg`
+1. [ ] Install GRUB: `grub-install --target=i386-pc --recheck /dev/nvme0n1`
+1. [ ] Finally, generate the GRUB configuration file: `grub-mkconfig -o /boot/grub/grub.cfg`
 
 ## Encrypt the swap
 
