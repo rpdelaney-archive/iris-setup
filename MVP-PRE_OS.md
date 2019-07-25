@@ -66,12 +66,12 @@ Now we will create the following subvolumes:
 
 ```
 subvolid=5 (/dev/nvme0n1p3)
-   ├── @ (mounted as /)
-   |       ├── /.snapshots (mounted @snapshots subvolume)
-   |       ├── /home (mounted @home subvolume)
-   |       └── /var/cache/pacman/pkg (nested subvolume)
-   ├── @snapshots (mounted as /.snapshots)
-   └── @home (mounted as /home)
+   └──| @ (mounted as /)
+      ├── /.snapshots
+      ├── /home
+      ├── /var/abs
+      ├── /var/tmp
+      └── /var/cache/pacman/pkg
 ```
 
 Mount the newly created filesystem with zstd compression.
@@ -80,28 +80,24 @@ Mount the newly created filesystem with zstd compression.
 # mount -o compress=zstd /dev/mapper/cryptroot /mnt
 ```
 
-1. [ ] Now, create the top-level subvolumes:
+1. [ ] Now, create the top-level subvolume:
 
 ```
 btrfs subvolume create /mnt/@
-btrfs subvolume create /mnt/@snapshots
-btrfs subvolume create /mnt/@home
 umount /mnt
 ```
 
-Next mount the top-level subvolumes:
+Next mount the top-level subvolume:
 
 ```
 mount -o compress=zstd,subvol=@ /dev/mapper/cryptroot /mnt
-mkdir -p /mnt/home
-mount -o compress=zstd,subvol=@home /dev/mapper/cryptroot /mnt/home
-mkdir -p /mnt/.snapshots
-mount -o compress=zstd,subvol=@snapshots /dev/mapper/cryptroot /mnt/.snapshots
 ```
 
 1. [ ] Create nested subvolumes that we do **not** want to have snapshots of when taking snapshots of `/`.
 
 ```
+btrfs subvolume create /mnt/home
+btrfs subvolume create /mnt/.snapshots
 mkdir -p /mnt/var
 btrfs subvolume create /mnt/var/abs
 btrfs subvolume create /mnt/var/tmp

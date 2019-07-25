@@ -12,8 +12,6 @@ Mount the btrfs filesystem on `/mnt`.
 
 1. [ ] Generate the fstab: `genfstab -U /mnt >> /mnt/etc/fstab`.
 
-Note that it will create entries for all the subvolumes. Since btrfs subvolumes are recursively mounted automatically, we only need fstab entries for `/` and swap. Delete the others.
-
 Change root into the new system: `arch-chroot /mnt`
 
 1. [ ] Set the timezone: `ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime`
