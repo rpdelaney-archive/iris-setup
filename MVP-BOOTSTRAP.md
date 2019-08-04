@@ -83,6 +83,33 @@ BINARIES=("/usr/bin/btrfs")
 /etc/mkinitcpio.conf
 ---
 HOOKS=(base systemd autodetect keyboard sd-vconsole modconf resume block sd-encrypt sd-lvm2 filesystems fsck)
+
+```
+
+### Pacman Hook
+
+Since we have an Nvidia graphics card (arg) we need to add a pacman hook to regenerate the initramfs every time the nvidia graphics driver is updated (or removed).
+
+**WARNING** If we use a different kernel, such as (for example) linux-ck, both `Target=` lines will need to be updated accordingly.
+
+```
+/etc/pacman.d/hooks/nvidia.hook
+---
+[Trigger]
+Operation=Install
+Operation=Upgrade
+Operation=Remove
+Type=Package
+Target=nvidia
+Target=linux
+# Change the linux part above and in the Exec line if a different kernel is used
+
+[Action]
+Description=Update Nvidia module in initcpio
+Depends=mkinitcpio
+When=PostTransaction
+NeedsTargets
+Exec=/bin/sh -c 'while read -r trg; do case $trg in linux) exit 0; esac; done; /usr/bin/mkinitcpio -P'
 ```
 
 #### Generate initramfs
