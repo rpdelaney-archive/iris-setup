@@ -118,6 +118,6 @@ mount -o compress=zstd,subvol=@/var/cache/pacman/pkg /dev/mapper/cryptlvm /mnt/v
 
 ## O/S
 
-_Continue to [OS Installation Plan](https://github.com/rpdelaney/iris-setup/blob/master/MVP-BOOTSTRAP.md)_
+_Continue to [OS Installation Plan](https://github.com/rpdelaney/iris-setup/blob/master/BOOTSTRAP.md)_
 
 <!--- vim: set nospell: -->
