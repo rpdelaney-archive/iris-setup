@@ -10,7 +10,7 @@ Hardware specs [here](./HARDWARE.md).
 
 ### Pre-OS
 
-[Pre-OS Installation Plan](https://github.com/rpdelaney/iris-setup/blob/master/MVP-PRE_OS.md)
+[Pre-OS Installation Plan](https://github.com/rpdelaney/iris-setup/blob/master/PRE_OS.md)
 
 1. Partition the disks
    1. A `swap` partition of 32G
