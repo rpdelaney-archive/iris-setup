@@ -44,6 +44,7 @@ Take a btrfs snapshot here.
 1. [ ] AUR helper `yay`
 1. [ ] [Power Management](https://wiki.archlinux.org/index.php/Power_management)
    * [ ] Install `acpid`
+   * [ ] Install `acpi`
    * [ ] Set systemd [ACPI Events](https://wiki.archlinux.org/index.php/Power_management#ACPI_events)
    * [ ] Disable Wake-on-LAN
    * [ ] [Hybrid sleep](https://wiki.archlinux.org/index.php/Power_management#Hybrid-sleep_on_suspend_or_hibernation_request) on suspend
