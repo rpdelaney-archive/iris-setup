@@ -128,7 +128,7 @@ We should only have to enter the container decryption passphrase once.
 /etc/default/grub
 ---
 UUID_NVME=""    # UUID of encrypted disk partition (/dev/nvme0n1p3)
-UUID_ROOT=""    # UUID of decrypted & mounted volume (/dev/mapper/cryptroot)
+UUID_ROOT=""    # UUID of decrypted & mounted volume (/dev/mapper/cryptlvm)
 UUID_SWAP=""    # UUID of swap partition (/dev/nvme0n1p1)
 
 GRUB_CMDLINE_LINUX="rd.luks.name=$UUID_NVME=cryptlvm root=UUID=$UUID_ROOT resume=UUID=$UUID_SWAP"

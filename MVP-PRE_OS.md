@@ -56,8 +56,8 @@ cryptsetup luksFormat --type luks1 --use-random --hash whirlpool --iter-time 500
 Unlock the LUKS container and format it.
 
 ```
-cryptsetup open --type luks1 /dev/nvme0n1p3 cryptroot
-mkfs.btrfs -L root /dev/mapper/cryptroot
+cryptsetup open --type luks1 /dev/nvme0n1p3 cryptlvm
+mkfs.btrfs -L root /dev/mapper/cryptlvm
 ```
 
 ### Create btrfs subvolumes
@@ -78,7 +78,7 @@ We will create a subvolume for snapshots later, when setting up snapper.
 Mount the newly created filesystem with zstd compression.
 
 ```
-# mount -o compress=zstd /dev/mapper/cryptroot /mnt
+# mount -o compress=zstd /dev/mapper/cryptlvm /mnt
 ```
 
 1. [ ] Now, create the top-level subvolume:
@@ -91,7 +91,7 @@ umount /mnt
 Next mount the top-level subvolume:
 
 ```
-mount -o compress=zstd,subvol=@ /dev/mapper/cryptroot /mnt
+mount -o compress=zstd,subvol=@ /dev/mapper/cryptlvm /mnt
 ```
 
 1. [ ] Create nested subvolumes that we do **not** want to have snapshots of when taking snapshots of `/`.
@@ -108,9 +108,9 @@ btrfs subvolume create /mnt/var/cache/pacman/pkg
 1. Mount the nested subvolumes
 
 ```
-mount -o compress=zstd,subvol=@/var/abs /dev/mapper/cryptroot /mnt/var/abs
-mount -o compress=zstd,subvol=@/var/tmp /dev/mapper/cryptroot /mnt/var/tmp
-mount -o compress=zstd,subvol=@/var/cache/pacman/pkg /dev/mapper/cryptroot /mnt/var/cache/pacman/pkg
+mount -o compress=zstd,subvol=@/var/abs /dev/mapper/cryptlvm /mnt/var/abs
+mount -o compress=zstd,subvol=@/var/tmp /dev/mapper/cryptlvm /mnt/var/tmp
+mount -o compress=zstd,subvol=@/var/cache/pacman/pkg /dev/mapper/cryptlvm /mnt/var/cache/pacman/pkg
 ```
 
 - To see a list of current subvolumes: `btrfs subvolume list -a /mnt`
