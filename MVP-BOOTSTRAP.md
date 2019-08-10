@@ -144,7 +144,7 @@ GRUB_CMDLINE_LINUX="rd.luks.name=$UUID_NVME=cryptlvm root=UUID=$UUID_ROOT resume
 
 ## Encrypt the boot partition
 
-1. [ ] Encrypt the boot partition as described [here](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#Encrypted_boot_partition_(GRUB))  
+1. [ ] Encrypt the boot partition as described [here](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#Encrypted_boot_partition_(GRUB))
    - _I think we did this already?_
 1. [ ] Add [pacman hooks](http://archive.is/jRuC3) to automount the boot partition when upgrades need to access related files
 
