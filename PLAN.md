@@ -24,6 +24,7 @@ Hardware specs [here](./HARDWARE.md).
 
 1. [ ] [Archlinux](https://wiki.archlinux.org/index.php/Installation_guide)
 1. [ ] Bootloader: [GRUB2](https://wiki.archlinux.org/index.php/GRUB) in BIOS mode (no UEFI)[[1]](http://techrights.org/wiki/index.php/UEFI)[[2]](http://bytesmedia.co.uk/2012/07/17/richard-stallman-uefi/)[[3]](https://yarchive.net/comp/linux/efi.html)
+1. [ ] [Snapper](https://wiki.archlinux.org/index.php/Snapper)
 
 ### Post-OS
 
@@ -93,7 +94,6 @@ This stuff is out of scope for this execution plan. We might not want all of it 
 
 See also: [privacytools.io](https://www.privacytools.io/)
 
-1. [ ] [Snapper](https://wiki.archlinux.org/index.php/Snapper)
 1. [ ] [ILoveCandy](https://www.reddit.com/r/archlinux/comments/6r8lk0/i_love_candydo_you/)
 1. [ ] [Activate](https://wiki.archlinux.org/index.php/Activating_Numlock_on_Bootup) NumLock on bootup
 1. [ ] Privacy-friendly DNS server in /etc/resolv.conf.head
