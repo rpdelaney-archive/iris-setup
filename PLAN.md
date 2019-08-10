@@ -96,6 +96,7 @@ See also: [privacytools.io](https://www.privacytools.io/)
 1. [ ] [Snapper](https://wiki.archlinux.org/index.php/Snapper)
 1. [ ] [ILoveCandy](https://www.reddit.com/r/archlinux/comments/6r8lk0/i_love_candydo_you/)
 1. [ ] [Activate](https://wiki.archlinux.org/index.php/Activating_Numlock_on_Bootup) NumLock on bootup
+1. [ ] Privacy-friendly DNS server in /etc/resolv.conf.head
 1. [ ] Local consumer VPN connection with non-VPN traffic dropped by `iptables`
 1. [ ] [zswap](https://wiki.archlinux.org/index.php/Zswap)
 1. [ ] [USBGuard](https://usbguard.github.io/)
