@@ -32,7 +32,12 @@ arch-chroot /mnt
 ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
 ```
 
-1. [ ] Generate `/etc/adjtime`: `hwclock --systohc`
+1. [ ] Generate `/etc/adjtime`: 
+
+```
+hwclock --systohc
+```
+
 1. [ ] Set up `/etc/locale.gen`:
 
 ```
