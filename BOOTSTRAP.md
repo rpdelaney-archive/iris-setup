@@ -39,6 +39,20 @@ en_US.UTF-8 UTF-8
 
 1. [ ] Set the root password: `passwd`
 
+## fstrim
+
+util-linux provides `fstrim.service` and `fstrim.timer` systemd units. Enabling the timer activates the periodic fstrim service:
+
+`systemctl enable fstrim.timer && systemctl start fstrim.timer`
+
+_See also:_ `man fstrim`
+
+Q: How does it know not to trim magnetic disks?
+A: It trims everything in fstab. Since the magnetic disk is going in /etc/crypttab later, that is okay for us.
+
+Q: How do I tune the period of trimming?
+A: `/usr/lib/systemd/system/fstrim.service` defines periodicity but the default of 1 week is probably fine
+
 ## Bootloader
 
 [GRUB2](https://wiki.archlinux.org/index.php/GRUB) in BIOS mode (no UEFI)

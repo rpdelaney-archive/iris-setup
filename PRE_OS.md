@@ -162,20 +162,6 @@ UUID=<LVROOT UUID>                          /           btrfs       rw,relatime,
 LABEL=SWAP                                  none        swap        defaults                                                                    0       0
 ```
 
-## fstrim
-
-util-linux provides `fstrim.service` and `fstrim.timer` systemd units. Enabling the timer activates the periodic fstrim service:
-
-`systemctl enable fstrim.timer && systemctl start fstrim.timer`
-
-_See also: man fstrim_
-
-Q: How does it know not to trim magnetic disks?
-A: It trims everything in fstab. Since the magnetic disk is going in /etc/crypttab later, that is okay for us.
-
-Q: How do I tune the period of trimming?
-A: `/usr/lib/systemd/system/fstrim.service' defines periodicity but the default of 1 week is probably fine
-
 ## O/S
 
 _Continue to [OS Installation Plan](https://github.com/rpdelaney/iris-setup/blob/master/BOOTSTRAP.md)_
