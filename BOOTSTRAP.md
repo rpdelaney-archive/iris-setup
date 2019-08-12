@@ -193,9 +193,53 @@ GRUB_CMDLINE_LINUX="rd.luks.name=$UUID_ROOT=cryptlvm root=UUID=$UUID_LVM2 resume
 1. [ ] Install GRUB: `grub-install --target=i386-pc --recheck /dev/nvme0n1`
 1. [ ] Finally, generate the GRUB configuration file: `grub-mkconfig -o /boot/grub/grub.cfg`
 
-## Pacman
+## Pacman boot hook
 
 1. [ ] Add [pacman hooks](http://archive.is/jRuC3) to automount the boot partition when upgrades need to access related files
+
+## Snapper
+
+Once we have created our user role, create a group for managing snapper snapshots and add ourselves to it:
+
+```
+groupadd snapper
+usermod -a -G snapper ryan
+```
+
+Install snapper and snap-pac:
+
+```
+pacman -s snapper snap-pac
+```
+
+snap-pac creates a pacman hook that automatically creates pre/post snapshots.
+
+Create a snapper config for a `.snapshots` subvolume:
+
+```
+snapper create-config --template default /
+```
+
+Edit the configurations to set up scheduled snapshots:
+
+```
+/etc/snapper/configs/root
+---
+# create hourly snapshots
+TIMELINE_CREATE="yes"
+# cleanup hourly snapshots after some time
+TIMELINE_CLEANUP="yes"
+
+# limits for timeline cleanup
+TIMELINE_MIN_AGE="1800"
+TIMELINE_LIMIT_HOURLY="3"
+TIMELINE_LIMIT_DAILY="7"
+TIMELINE_LIMIT_WEEKLY="1"
+TIMELINE_LIMIT_MONTHLY="12"
+TIMELINE_LIMIT_YEARLY="2"
+```
+
+Also do this for the homedir, which I guess is `/etc/snapper/configs/home`
 
 ## Done :)
 
