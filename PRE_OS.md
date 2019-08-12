@@ -61,12 +61,34 @@ Decrypt and mount the encrypted root partition.
 cryptsetup open --type luks1 /dev/nvme0n1p2 cryptlvm
 ```
 
-### Create btrfs subvolumes
+### Create and mount LVM volumes
+
+_Main article: [LVM](https://wiki.archlinux.org/index.php/LVM#Create_file_systems_and_mount_logical_volumes)_
+
+Create LVM group and volumes for root and swap.
+
+```
+vgcreate volgroup0 /dev/cryptlvm
+lvcreate -L 32G -n lvswap
+lvcreate -L 100%FREE -n lvroot
+```
+
+* To display created volume groups, `vgdisplay`
+* To display created logical volumes, `lvdisplay`
+
+### Create btrfs filesystem
+
+Format the root LVM volume and create the swap:
+
+```
+mkfs.btrfs -L root /dev/volgroup0/lvroot
+mkswap -L swap /dev/volgroup0/lvswap
+```
 
 Now we will create the following subvolumes:
 
 ```
-subvolid=5 (/dev/mapper/cryptlvm)
+subvolid=5 (/dev/volgroup0/lvroot)
    └──| @ (mounted as /)
       ├── /home
       ├── /var/abs
@@ -79,7 +101,7 @@ We will create a subvolume for snapshots later, when setting up snapper.
 Mount the newly created filesystem with zstd compression.
 
 ```
-# mount -o compress=zstd /dev/mapper/cryptlvm /mnt
+# mount -o compress=zstd /dev/volgroup0/lvroot /mnt
 ```
 
 1. [ ] Now, create the top-level subvolume:
@@ -92,7 +114,7 @@ umount /mnt
 Next mount the top-level subvolume:
 
 ```
-mount -o compress=zstd,subvol=@ /dev/mapper/cryptlvm /mnt
+mount -o compress=zstd,subvol=@ /dev/volgroup0/lvroot /mnt
 ```
 
 1. [ ] Create nested subvolumes that we do **not** want to have snapshots of when taking snapshots of `/`.
@@ -109,9 +131,9 @@ btrfs subvolume create /mnt/var/cache/pacman/pkg
 1. Mount the nested subvolumes
 
 ```
-mount -o compress=zstd,subvol=@/var/abs /dev/mapper/cryptlvm /mnt/var/abs
-mount -o compress=zstd,subvol=@/var/tmp /dev/mapper/cryptlvm /mnt/var/tmp
-mount -o compress=zstd,subvol=@/var/cache/pacman/pkg /dev/mapper/cryptlvm /mnt/var/cache/pacman/pkg
+mount -o compress=zstd,subvol=@/var/abs /dev/volgroup0/lvroot /mnt/var/abs
+mount -o compress=zstd,subvol=@/var/tmp /dev/volgroup0/lvroot /mnt/var/tmp
+mount -o compress=zstd,subvol=@/var/cache/pacman/pkg /dev/volgroup0/lvroot /mnt/var/cache/pacman/pkg
 ```
 
 - To see a list of current subvolumes: `btrfs subvolume list -a /mnt`
@@ -123,17 +145,26 @@ Note that although this is an SSD, we don't set 'discard' on these disks since t
 
 ```
 # <file system>                             <dir>       <type>      <options>                                                                   <dump> <pass>
-# /dev/mapper/cryptlvm LABEL=root
-UUID=<CRYPTLVM UUID>                        /           btrfs       rw,relatime,compress=zstd:3,ssd,space_cache,subvolid=256,subvol=/@,subvol=@ 0       0
+# /dev/volgroup0/lvroot LABEL=root
+UUID=<LVROOT UUID>                          /           btrfs       rw,relatime,compress=zstd:3,ssd,space_cache,subvolid=256,subvol=/@,subvol=@ 0       0
 
-# /dev/mapper/swap LABEL=swap
-UUID=<SWAP UUID>                            none        swap        defaults                                                                    0       0
+# /dev/volgroup0/swap LABEL=swap
+UUID=<LVSWAP UUID>                          none        swap        defaults                                                                    0       0
 ```
 
-## Create LVM volumes
+## fstrim
 
-Unlock the encrypted partition and create lvm volumes for root and swap.
-`https://wiki.archlinux.org/index.php/LVM#Create_file_systems_and_mount_logical_volumes`
+util-linux provides `fstrim.service` and `fstrim.timer` systemd units. Enabling the timer activates the periodic fstrim service:
+
+`systemctl enable fstrim.timer && systemctl start fstrim.timer`
+
+_See also: man fstrim_
+
+Q: How does it know not to trim magnetic disks?
+A: It trims everything in fstab. Since the magnetic disk is going in /etc/crypttab later, that is okay for us.
+
+Q: How do I tune the period of trimming?
+A: `/usr/lib/systemd/system/fstrim.service' defines periodicity but the default of 1 week is probably fine
 
 ## O/S
 
