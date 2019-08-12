@@ -4,6 +4,18 @@ Review the [hardware](https://github.com/rpdelaney/iris-setup/blob/master/HARDWA
 
 We're putting the O/S on the NVME disk, `/dev/nvme0n1`.
 
+```
++---------------------------+-----------------------------------------------+
+| Boot loader               | Logical volume #2     | Logical volume #2     |
+| mountpoint: /boot         | mountpoint: swap      | mountpoint: /         |
+|                           | /dev/MyVolGroup/swap  | /dev/MyVolGroup/root  |
+|                           |_ _ _ _ _ _ _ _ _ _ _ _|_ _ _ _ _ _ _ _ _ _ _ _|
+|                           |                                               |
+| LUKS2 encrypted partition |              LUKS2 encrypted partition        |
+| /dev/nvme0n1p1            |                /dev/nvme0n1p2                 |
++---------------------------+-----------------------------------------------+
+```
+
 ## Installation media
 
 Prepare the installation media: keyboard layout, system clock, and optimize the mirrorlist.
@@ -29,35 +41,24 @@ gdisk /dev/nvme0n1
 Device         | Type Hex Code | Role      | First sector | Last sector
 ---------------|---------------| ----------|--------------|------------
 /dev/nvme0n1p1 | EF02          | BIOS boot | 2048         | +1M
-/dev/nvme0n1p2 | 8200          | Swap      | default      | +32G
-/dev/nvme0n1p3 | 8300          | Linux FS  | default      | default
-
-1. [ ] Activate swap
-
-```
-mkswap -L "SWAP" /dev/nvme0n1p2
-swapon -L "SWAP"
-```
+/dev/nvme0n1p2 | 8300          | Linux FS  | default      | default
 
 ## Create LUKS container
 
 1. [ ] Format the LUKS container:
 
 ```
-cryptsetup luksFormat --type luks1 --use-random --hash whirlpool --iter-time 5000 /dev/nvme0n1p3
+cryptsetup luksFormat --type luks1 --use-random --hash whirlpool --iter-time 5000 /dev/nvme0n1p2
 ```
 
 1. [ ] [Backup LUKS headers](https://wiki.archlinux.org/index.php/Dm-crypt/Device_encryption#Backup_and_restore)
 
 ## O/S Filesystem
 
-- [btrfs](https://wiki.archlinux.org/index.php/Btrfs) with [full disk encryption](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#Btrfs_subvolumes_with_swap) on both drives, including encrypted bootloader
-
-Unlock the LUKS container and format it.
+Decrypt and mount the encrypted root partition.
 
 ```
-cryptsetup open --type luks1 /dev/nvme0n1p3 cryptlvm
-mkfs.btrfs -L root /dev/mapper/cryptlvm
+cryptsetup open --type luks1 /dev/nvme0n1p2 cryptlvm
 ```
 
 ### Create btrfs subvolumes
@@ -65,7 +66,7 @@ mkfs.btrfs -L root /dev/mapper/cryptlvm
 Now we will create the following subvolumes:
 
 ```
-subvolid=5 (/dev/nvme0n1p3)
+subvolid=5 (/dev/mapper/cryptlvm)
    └──| @ (mounted as /)
       ├── /home
       ├── /var/abs
@@ -115,6 +116,24 @@ mount -o compress=zstd,subvol=@/var/cache/pacman/pkg /dev/mapper/cryptlvm /mnt/v
 
 - To see a list of current subvolumes: `btrfs subvolume list -a /mnt`
 - To delete a subvolume: `btrfs subvolume delete /path/to/subvolume`
+
+## Update the fstab
+
+Note that although this is an SSD, we don't set 'discard' on these disks since that enforces continuous TRIM, but we are going to set up periodic TRIM with `fstrim`.
+
+```
+# <file system>                             <dir>       <type>      <options>                                                                   <dump> <pass>
+# /dev/mapper/cryptlvm LABEL=root
+UUID=<CRYPTLVM UUID>                        /           btrfs       rw,relatime,compress=zstd:3,ssd,space_cache,subvolid=256,subvol=/@,subvol=@ 0       0
+
+# /dev/mapper/swap LABEL=swap
+UUID=<SWAP UUID>                            none        swap        defaults                                                                    0       0
+```
+
+## Create LVM volumes
+
+Unlock the encrypted partition and create lvm volumes for root and swap.
+`https://wiki.archlinux.org/index.php/LVM#Create_file_systems_and_mount_logical_volumes`
 
 ## O/S
 

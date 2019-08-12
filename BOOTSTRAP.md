@@ -50,13 +50,15 @@ We need to configure and recreate the initramfs.
 
 #### LUKS keyfile
 
-1. [ ] Now we generate a LUKS keyfile to embed in GRUB
+Decrypting the bootloader will require entering a passphrase. Since the root partition is also encrypted, and we don't want to enter that long passphrase twice, we decrypt the root volume with a keyfile.
+
+1. [ ] Create a LUKS keyfile to embed in the kernel when we generate the initramfs later:
 
 ```
 # dd bs=1024 count=4 if=/dev/random of=/crypto_keyfile.bin iflag=fullblock
 # chmod 000 /crypto_keyfile.bin
 # chmod 600 /boot/initramfs-linux*
-# cryptsetup luksAddKey /dev/nvme0n1p3 /crypto_keyfile.bin
+# cryptsetup luksAddKey /dev/nvme0n1p2 /crypto_keyfile.bin
 ```
 
 1. [ ] Include the keyfile in [mkinitcpio's FILES array](https://wiki.archlinux.org/index.php/Mkinitcpio#BINARIES_and_FILES):
@@ -83,7 +85,6 @@ BINARIES=("/usr/bin/btrfs")
 /etc/mkinitcpio.conf
 ---
 HOOKS=(base systemd autodetect keyboard sd-vconsole modconf resume block sd-encrypt sd-lvm2 filesystems fsck)
-
 ```
 
 ### Pacman Hook
@@ -127,25 +128,18 @@ We should only have to enter the container decryption passphrase once.
 ```
 /etc/default/grub
 ---
-UUID_NVME=""    # UUID of encrypted disk partition (/dev/nvme0n1p3)
-UUID_ROOT=""    # UUID of decrypted & mounted volume (/dev/mapper/cryptlvm)
-UUID_SWAP=""    # UUID of swap partition (/dev/nvme0n1p1)
+UUID_ROOT=""    # UUID of encrypted disk partition (/dev/nvme0n1p2)
+UUID_LVM2=""    # UUID of decrypted & mounted volume (/dev/mapper/cryptlvm)
+UUID_SWAP=""    # UUID of swap partition (/dev/mapper/swap)
 
-GRUB_CMDLINE_LINUX="rd.luks.name=$UUID_NVME=cryptlvm root=UUID=$UUID_ROOT resume=UUID=$UUID_SWAP"
+GRUB_CMDLINE_LINUX="rd.luks.name=$UUID_ROOT=cryptlvm root=UUID=$UUID_LVM2 resume=UUID=$UUID_SWAP"
 ```
 
 1. [ ] Install GRUB: `grub-install --target=i386-pc --recheck /dev/nvme0n1`
 1. [ ] Finally, generate the GRUB configuration file: `grub-mkconfig -o /boot/grub/grub.cfg`
 
-## Encrypt the swap
+## Pacman
 
-1. [ ] Configure encrypted swap as described [here](https://wiki.archlinux.org/index.php/Dm-crypt/Swap_encryption)
-   - _I think we did this already?_
-
-## Encrypt the boot partition
-
-1. [ ] Encrypt the boot partition as described [here](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#Encrypted_boot_partition_(GRUB))
-   - _I think we did this already?_
 1. [ ] Add [pacman hooks](http://archive.is/jRuC3) to automount the boot partition when upgrades need to access related files
 
 ## Done :)
