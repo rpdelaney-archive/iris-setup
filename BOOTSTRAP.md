@@ -8,8 +8,7 @@ _Continued from [Pre-OS installation plan](https://github.com/rpdelaney/iris-set
 
 Mount the btrfs filesystem on `/mnt`.
 
-1. [ ] Pacstrap the filesystem: `pacstrap /mnt base btrfs-progs grub vim`
-
+1. [ ] Pacstrap the filesystem: `pacstrap /mnt "$(curl -Ss http://ix.io/1Rn5)"`
 1. [ ] Generate the fstab: `genfstab -U /mnt >> /mnt/etc/fstab`.
 
 Change root into the new system: `arch-chroot /mnt`
