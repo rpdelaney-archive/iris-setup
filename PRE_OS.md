@@ -83,6 +83,7 @@ lvcreate -L 100%FREE -n lvroot
 ```
 mkfs.btrfs -L root /dev/volgroup0/lvroot
 mkswap -L swap /dev/volgroup0/lvswap
+swapon -L swap
 ```
 
 Now we will create the following subvolumes:

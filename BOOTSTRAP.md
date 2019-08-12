@@ -32,7 +32,7 @@ arch-chroot /mnt
 ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
 ```
 
-1. [ ] Generate `/etc/adjtime`: 
+1. [ ] Generate `/etc/adjtime`:
 
 ```
 hwclock --systohc
