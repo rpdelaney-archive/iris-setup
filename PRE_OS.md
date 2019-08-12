@@ -8,7 +8,7 @@ We're putting the O/S on the NVME disk, `/dev/nvme0n1`.
 +---------------------------+-----------------------------------------------+
 | Boot loader               | Logical volume #2     | Logical volume #2     |
 | mountpoint: /boot         | mountpoint: swap      | mountpoint: /         |
-|                           | /dev/MyVolGroup/swap  | /dev/MyVolGroup/root  |
+|                           | /dev/volgroup0/swap   | /dev/volgroup0/root   |
 |                           |_ _ _ _ _ _ _ _ _ _ _ _|_ _ _ _ _ _ _ _ _ _ _ _|
 |                           |                                               |
 | LUKS2 encrypted partition |              LUKS2 encrypted partition        |
