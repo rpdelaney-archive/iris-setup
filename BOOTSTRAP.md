@@ -85,10 +85,10 @@ systemctl enable fstrim.timer && systemctl start fstrim.timer
 
 _See also:_ `man fstrim`
 
-Q: How does it know not to trim magnetic disks?
+Q: How does it know not to trim magnetic disks? 
 A: It trims everything in fstab. Since the magnetic disk is going in /etc/crypttab later, that is okay for us.
 
-Q: How do I tune the period of trimming?
+Q: How do I tune the period of trimming? 
 A: `/usr/lib/systemd/system/fstrim.service` defines periodicity but the default of 1 week is probably fine
 
 ## Bootloader
@@ -166,7 +166,11 @@ Exec=/bin/sh -c 'while read -r trg; do case $trg in linux) exit 0; esac; done; /
 
 #### Generate initramfs
 
-1. [ ] Finally, regenerate the initramfs: `# mkinitcpio -p linux`
+1. [ ] Finally, regenerate the initramfs: 
+
+```
+mkinitcpio -p linux
+```
 
 We should only have to enter the container decryption passphrase once.
 
