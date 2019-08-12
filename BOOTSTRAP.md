@@ -8,25 +8,56 @@ _Continued from [Pre-OS installation plan](https://github.com/rpdelaney/iris-set
 
 Mount the btrfs filesystem on `/mnt`.
 
-1. [ ] Pacstrap the filesystem: `pacstrap /mnt "$(curl -Ss http://ix.io/1Rn5)"`
-1. [ ] Generate the fstab: `genfstab -U /mnt >> /mnt/etc/fstab`.
+1. [ ] Pacstrap the filesystem:
 
-Change root into the new system: `arch-chroot /mnt`
+```
+pacstrap /mnt "$(curl -Ss http://ix.io/1Rn5)"
+```
 
-1. [ ] Set the timezone: `ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime`
+1. [ ] Generate the fstab:
+
+```
+genfstab -U /mnt >> /mnt/etc/fstab
+```
+
+Change root into the new system:
+
+```
+arch-chroot /mnt
+```
+
+1. [ ] Set the timezone:
+
+```
+ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+```
+
 1. [ ] Generate `/etc/adjtime`: `hwclock --systohc`
 1. [ ] Set up `/etc/locale.gen`:
 
 ```
-/etc/locale.gen
----
-en_US.UTF-8 UTF-8
+echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen
 ```
 
 1. [ ] Generate the locales with `locale-gen`
-1. [ ] Set up locale.conf: `echo 'LANG=en_US.UTF-8' > /etc/locale.conf`
-1. [ ] Set keyboard layout: `echo 'KEYMAP=dvorak' > /etc/vconsole.conf`
-1. [ ] Set the hostname: `echo 'iris' > /etc/hostname`
+1. [ ] Set up locale.conf:
+
+```
+echo 'LANG=en_US.UTF-8' > /etc/locale.conf
+```
+
+1. [ ] Set keyboard layout:
+
+```
+echo 'KEYMAP=dvorak' > /etc/vconsole.conf
+```
+
+1. [ ] Set the hostname:
+
+```
+echo 'iris' > /etc/hostname
+```
+
 1. [ ] Add matching entries to hosts:
 
 ```
@@ -43,7 +74,9 @@ en_US.UTF-8 UTF-8
 
 util-linux provides `fstrim.service` and `fstrim.timer` systemd units. Enabling the timer activates the periodic fstrim service:
 
-`systemctl enable fstrim.timer && systemctl start fstrim.timer`
+```
+systemctl enable fstrim.timer && systemctl start fstrim.timer
+```
 
 _See also:_ `man fstrim`
 
