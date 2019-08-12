@@ -141,15 +141,25 @@ mount -o compress=zstd,subvol=@/var/cache/pacman/pkg /dev/volgroup0/lvroot /mnt/
 
 ## Update the fstab
 
-Note that although this is an SSD, we don't set 'discard' on these disks since that enforces continuous TRIM, but we are going to set up periodic TRIM with `fstrim`.
+Now that we can get the UUID for the root and swap LVM volumes, we are ready to get fstab into its final form.  Note that although this is an SSD, we don't set 'discard' on these disks since that enforces continuous TRIM, but we are going to set up periodic TRIM with `fstrim`.
+
+1. [ ] Define the fstab:
 
 ```
+genfstab -U /mnt >> /mnt/etc/fstab
+```
+
+Check out the file it created. We want it to be like this:
+
+```
+/mnt/etc/fstab
+---
 # <file system>                             <dir>       <type>      <options>                                                                   <dump> <pass>
 # /dev/volgroup0/lvroot LABEL=root
 UUID=<LVROOT UUID>                          /           btrfs       rw,relatime,compress=zstd:3,ssd,space_cache,subvolid=256,subvol=/@,subvol=@ 0       0
 
 # /dev/volgroup0/swap LABEL=swap
-UUID=<LVSWAP UUID>                          none        swap        defaults                                                                    0       0
+LABEL=SWAP                                  none        swap        defaults                                                                    0       0
 ```
 
 ## fstrim
