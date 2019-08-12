@@ -18,7 +18,7 @@ We're putting the O/S on the NVME disk, `/dev/nvme0n1`.
 
 ## Installation media
 
-Prepare the installation media: keyboard layout, system clock, and optimize the mirrorlist.
+1. [ ] Prepare the installation media: keyboard layout, system clock, and optimize the mirrorlist.
 
 ```
 # loadkeys dvorak
@@ -65,7 +65,7 @@ cryptsetup open --type luks1 /dev/nvme0n1p2 cryptlvm
 
 _Main article: [LVM](https://wiki.archlinux.org/index.php/LVM#Create_file_systems_and_mount_logical_volumes)_
 
-Create LVM group and volumes for root and swap.
+1. [ ] Create LVM group and volumes for root and swap.
 
 ```
 vgcreate volgroup0 /dev/cryptlvm
@@ -78,7 +78,7 @@ lvcreate -L 100%FREE -n lvroot
 
 ### Create btrfs filesystem
 
-Format the root LVM volume and create the swap:
+1. [ ] Format the root LVM volume and create the swap:
 
 ```
 mkfs.btrfs -L root /dev/volgroup0/lvroot
@@ -128,7 +128,7 @@ mkdir -p /mnt/var/cache/pacman
 btrfs subvolume create /mnt/var/cache/pacman/pkg
 ```
 
-1. Mount the nested subvolumes
+Mount the nested subvolumes:
 
 ```
 mount -o compress=zstd,subvol=@/var/abs /dev/volgroup0/lvroot /mnt/var/abs
