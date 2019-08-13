@@ -244,8 +244,11 @@ Install snapper and snap-pac: <!--- why don't we just include this in the pacstr
 
 snap-pac creates a pacman hook that automatically creates pre/post snapshots if the timer is enabled.
 
+To enable automatic collection and removal of snapshots, enable the timer units:
+
 ```
 # systemctl enable snapper-timeline.timer
+# systemctl enable snapper-cleanup.timer
 ```
 
 Create a snapper config for a `.snapshots` subvolume:
