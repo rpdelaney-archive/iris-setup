@@ -20,6 +20,21 @@ pacstrap /mnt "$(curl -Ss http://ix.io/1Rtk)"
 genfstab -U /mnt >> /mnt/etc/fstab
 ```
 
+Now that we can get the UUID for the root and swap LVM volumes, we are ready to get fstab into its final form.  Note that although this is an SSD, we don't set 'discard' on these disks since that enforces continuous TRIM, but we are going to set up periodic TRIM with `fstrim`.
+
+Check out the file it created. We want it to be like this:
+
+```
+/mnt/etc/fstab
+---
+# <file system>                             <dir>       <type>      <options>                                                                   <dump> <pass>
+# /dev/volgroup0/lvroot LABEL=root
+UUID=<LVROOT UUID>                          /           btrfs       rw,relatime,compress=zstd:3,ssd,space_cache,subvolid=256,subvol=/@,subvol=@ 0       0
+
+# /dev/volgroup0/swap LABEL=swap
+LABEL=SWAP                                  none        swap        defaults                                                                    0       0
+```
+
 Change root into the new system:
 
 ```
