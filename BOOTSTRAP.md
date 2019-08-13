@@ -95,7 +95,7 @@ echo 'iris' > /etc/hostname
 util-linux provides `fstrim.service` and `fstrim.timer` systemd units. Enabling the timer activates the periodic fstrim service:
 
 ```
-systemctl enable fstrim.timer && systemctl start fstrim.timer
+systemctl enable fstrim.timer
 ```
 
 _See also:_ `man fstrim`
