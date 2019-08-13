@@ -58,7 +58,7 @@ cryptsetup luksFormat --type luks1 --use-random --hash whirlpool --iter-time 500
 Decrypt and mount the encrypted root partition.
 
 ```
-cryptsetup open --type luks1 /dev/nvme0n1p2 cryptlvm
+cryptsetup open --allow-discards --type luks1 /dev/nvme0n1p2 cryptlvm
 ```
 
 ### Create and mount LVM volumes
