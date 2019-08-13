@@ -53,7 +53,7 @@ Take a btrfs snapshot here.
    * [ ] No remote access as root
    * [ ] Public key authentication only
    * [ ] Passworded BIOS
-   * [ ] Boot tampering checking: investigate chkboot or [chkcryptoboot](https://aur.archlinux.org/packages/mkinitcpio-chkcryptoboot/)
+   * [ ] Boot tampering checking: investigate chkboot, [hashboot](https://github.com/tastytea/hashboot) or [chkcryptoboot](https://aur.archlinux.org/packages/mkinitcpio-chkcryptoboot/)
    * Consider disabling the front-facing camera by [blacklisting](https://wiki.archlinux.org/index.php/Kernel_module#Blacklisting) the `uvcvideo` module
 1. [ ] Domain name resolution: [dnsmasq](https://wiki.archlinux.org/index.php/Dnsmasq)
 1. [ ] Network manager: [Wicd](https://wiki.archlinux.org/index.php/Wicd)
