@@ -95,6 +95,7 @@ This stuff is out of scope for this execution plan. We might not want all of it 
 
 See also: [privacytools.io](https://www.privacytools.io/)
 
+1. [ ] [grub-btrfs](https://github.com/Antynea/grub-btrfs) configuration tuning
 1. [ ] [snap-sync](https://www.archlinux.org/packages/community/any/snap-sync/) can use snapshots to back up to an external machine
 1. [ ] [ILoveCandy](https://www.reddit.com/r/archlinux/comments/6r8lk0/i_love_candydo_you/)
 1. [ ] [Activate](https://wiki.archlinux.org/index.php/Activating_Numlock_on_Bootup) NumLock on bootup
