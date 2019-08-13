@@ -192,8 +192,8 @@ We should only have to enter the container decryption passphrase once.
 ### GRUB
 
 1. [ ] Configure /etc/default/grub using additional arguments for encrypted boot as described [here](https://wiki.archlinux.org/index.php/GRUB#Additional_arguments) and [here](https://wiki.archlinux.org/index.php/GRUB#Encrypted_/boot)
-   - Uncomment `GRUB_ENABLE_CRYPTODISK=y`
-   - Set kernel parameters allowing the kernel module to decrypt the root partition:
+   - [ ] Uncomment `GRUB_ENABLE_CRYPTODISK=y`
+   - [ ] Set kernel parameters allowing the kernel module to decrypt the root partition:
 
 ```
 /etc/default/grub
@@ -211,6 +211,19 @@ GRUB_CMDLINE_LINUX="rd.luks.name=$UUID_ROOT=cryptlvm root=UUID=$UUID_LVM2 resume
 ## Pacman boot hook
 
 1. [ ] Add [pacman hooks](http://archive.is/jRuC3) to automount the boot partition when upgrades need to access related files
+
+## Create our user role
+
+1. [ ] Create the user role.
+
+```
+# useradd --create-home --shell /bin/bash ryan
+# passwd ryan
+# groupadd sudoers
+# usermod -a -G sudoers ryan
+```
+
+1. [ ] Add the sudoers group in `visudo`.
 
 ## Snapper
 
@@ -258,6 +271,6 @@ Also do this for the homedir, which I guess is `/etc/snapper/configs/home`
 
 ## Done :)
 
-`reboot` and go on to post-install stuffs.
+Exit the chroot and `reboot` and go on to post-install stuffs.
 
 <!--- vim: set nospell: -->
