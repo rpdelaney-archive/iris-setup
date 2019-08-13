@@ -69,8 +69,8 @@ _Main article: [LVM](https://wiki.archlinux.org/index.php/LVM#Create_file_system
 
 ```
 vgcreate volgroup0 /dev/mapper/cryptlvm
-lvcreate -L 32G -n lvswap
-lvcreate -L 100%FREE -n lvroot
+lvcreate volgroup0 -L 32G -n lvswap
+lvcreate volgroup0 -l 100%FREE -n lvroot
 ```
 
 * To display created volume groups, `vgdisplay`
