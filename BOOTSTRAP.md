@@ -242,7 +242,7 @@ Install snapper and snap-pac: <!--- why don't we just include this in the pacstr
 # pacman -S snapper snap-pac
 ```
 
-snap-pac creates a pacman hook that automatically creates pre/post snapshots if the timer is enabled.
+snap-pac creates a pacman hook that automatically creates pre/post snapshots if the timer is enabled. <!--- this doesn't seem to persist outside the chroot either -->
 
 To enable automatic collection and removal of snapshots, enable the timer units:
 
