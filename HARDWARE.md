@@ -38,8 +38,9 @@ NVidia | GTX 1650 | 4GB      | GDDR5
 
 ## NIC
 
-Type | Vendor | Model
------|--------|-----
-WiFi | Intel  | Dual Band Wireless-AC 9560 802.11ac + Bluetooth 5
+Type     | Vendor | Model
+---------|--------|-----
+Ethernet | ?      | ?
+WiFi     | Intel  | Dual Band Wireless-AC 9560 802.11ac + Bluetooth 5
 
 <!--- vim: set nospell: -->

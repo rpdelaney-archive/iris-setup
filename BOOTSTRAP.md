@@ -234,7 +234,7 @@ Once we have created our user role, create a group for managing snapper snapshot
 # usermod -a -G snapper ryan
 ```
 
-Install snapper and snap-pac:
+Install snapper and snap-pac: <!--- why don't we just include this in the pacstrap payload? -->
 
 ```
 # pacman -S snapper snap-pac

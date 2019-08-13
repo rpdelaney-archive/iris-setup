@@ -6,7 +6,7 @@ We're putting the O/S on the NVME disk, `/dev/nvme0n1`.
 
 ```
 +---------------------------+-----------------------------------------------+
-| Boot loader               | Logical volume #2     | Logical volume #2     |
+| Boot loader               | LVM volume            | LVM volume            |
 | mountpoint: /boot         | mountpoint: swap      | mountpoint: /         |
 |                           | /dev/volgroup0/swap   | /dev/volgroup0/root   |
 |                           |_ _ _ _ _ _ _ _ _ _ _ _|_ _ _ _ _ _ _ _ _ _ _ _|
@@ -28,7 +28,7 @@ We're putting the O/S on the NVME disk, `/dev/nvme0n1`.
 # reflector --verbose --age 12 --sort rate --sort score --save /etc/pacman.d/mirrorlist
 ```
 
-_(No dm-crypt [drive preparation](https://wiki.archlinux.org/index.php/Dm-crypt/Drive_preparation) since the disk is blank and factory-new.)_
+_(No dm-crypt [drive preparation](https://wiki.archlinux.org/index.php/Dm-crypt/Drive_preparation) since the disk is blank and factory-new._
 
 ## Create partitions
 
