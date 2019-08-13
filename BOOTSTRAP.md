@@ -17,7 +17,7 @@ pacstrap /mnt $(curl -Ss http://ix.io/1Rtk)
 1. [ ] Generate the fstab:
 
 ```
-genfstab -U /mnt >> /mnt/etc/fstab
+# genfstab -U /mnt >> /mnt/etc/fstab
 ```
 
 Now that we can get the UUID for the root and swap LVM volumes, we are ready to get fstab into its final form.  Note that although this is an SSD, we don't set 'discard' on these disks since that enforces continuous TRIM, but we are going to set up periodic TRIM with `fstrim`.
@@ -38,32 +38,32 @@ LABEL=SWAP                                  none        swap        defaults    
 Change root into the new system:
 
 ```
-arch-chroot /mnt
+# arch-chroot /mnt
 ```
 
 1. [ ] Set the timezone:
 
 ```
-ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+# ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
 ```
 
 1. [ ] Generate `/etc/adjtime`:
 
 ```
-hwclock --systohc
+# hwclock --systohc
 ```
 
 1. [ ] Set up `/etc/locale.gen`:
 
 ```
-echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen
+# echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen
 ```
 
 1. [ ] Generate the locales with `locale-gen`
 1. [ ] Set up locale.conf:
 
 ```
-echo 'LANG=en_US.UTF-8' > /etc/locale.conf
+# echo 'LANG=en_US.UTF-8' > /etc/locale.conf
 ```
 
 1. [ ] Set keyboard layout:
@@ -230,26 +230,26 @@ GRUB_CMDLINE_LINUX="rd.luks.name=$UUID_ROOT=cryptlvm root=UUID=$UUID_LVM2 resume
 Once we have created our user role, create a group for managing snapper snapshots and add ourselves to it:
 
 ```
-groupadd snapper
-usermod -a -G snapper ryan
+# groupadd snapper
+# usermod -a -G snapper ryan
 ```
 
 Install snapper and snap-pac:
 
 ```
-pacman -s snapper snap-pac
+# pacman -S snapper snap-pac
 ```
 
 snap-pac creates a pacman hook that automatically creates pre/post snapshots if the timer is enabled.
 
 ```
-systemctl enable snapper-timeline.timer
+# systemctl enable snapper-timeline.timer
 ```
 
 Create a snapper config for a `.snapshots` subvolume:
 
 ```
-snapper create-config --template default /
+# snapper create-config --template default /
 ```
 
 Edit the configurations to set up scheduled snapshots:

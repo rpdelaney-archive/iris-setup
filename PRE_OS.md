@@ -35,7 +35,7 @@ _(No dm-crypt [drive preparation](https://wiki.archlinux.org/index.php/Dm-crypt/
 1. [ ] Create MBR partition tables: [GPT](https://wiki.archlinux.org/index.php/GPT)
 
 ```
-gdisk /dev/nvme0n1
+# gdisk /dev/nvme0n1
 ```
 
 Device         | Type Hex Code | Role      | First sector | Last sector
@@ -48,7 +48,7 @@ Device         | Type Hex Code | Role      | First sector | Last sector
 1. [ ] Format the LUKS container:
 
 ```
-cryptsetup luksFormat --type luks1 --use-random --hash whirlpool --iter-time 5000 /dev/nvme0n1p2
+# cryptsetup luksFormat --type luks1 --use-random --hash whirlpool --iter-time 5000 /dev/nvme0n1p2
 ```
 
 1. [ ] [Backup LUKS headers](https://wiki.archlinux.org/index.php/Dm-crypt/Device_encryption#Backup_and_restore)
@@ -58,7 +58,7 @@ cryptsetup luksFormat --type luks1 --use-random --hash whirlpool --iter-time 500
 Decrypt and mount the encrypted root partition.
 
 ```
-cryptsetup open --allow-discards --type luks1 /dev/nvme0n1p2 cryptlvm
+# cryptsetup open --allow-discards --type luks1 /dev/nvme0n1p2 cryptlvm
 ```
 
 ### Create and mount LVM volumes
@@ -68,9 +68,9 @@ _Main article: [LVM](https://wiki.archlinux.org/index.php/LVM#Create_file_system
 1. [ ] Create LVM group and volumes for root and swap.
 
 ```
-vgcreate volgroup0 /dev/mapper/cryptlvm
-lvcreate volgroup0 -L 32G -n lvswap
-lvcreate volgroup0 -l 100%FREE -n lvroot
+# vgcreate volgroup0 /dev/mapper/cryptlvm
+# lvcreate volgroup0 -L 32G -n lvswap
+# lvcreate volgroup0 -l 100%FREE -n lvroot
 ```
 
 * To display created volume groups, `vgdisplay`
@@ -81,9 +81,9 @@ lvcreate volgroup0 -l 100%FREE -n lvroot
 1. [ ] Format the root LVM volume and create the swap:
 
 ```
-mkfs.btrfs -L root /dev/volgroup0/lvroot
-mkswap -L swap /dev/volgroup0/lvswap
-swapon -L swap
+# mkfs.btrfs -L root /dev/volgroup0/lvroot
+# mkswap -L swap /dev/volgroup0/lvswap
+# swapon -L swap
 ```
 
 Now we will create the following subvolumes:
@@ -108,33 +108,33 @@ Mount the newly created filesystem with zstd compression.
 1. [ ] Now, create the top-level subvolume:
 
 ```
-btrfs subvolume create /mnt/@
-umount /mnt
+# btrfs subvolume create /mnt/@
+# umount /mnt
 ```
 
 Next mount the top-level subvolume:
 
 ```
-mount -o compress=zstd,subvol=@ /dev/volgroup0/lvroot /mnt
+# mount -o compress=zstd,subvol=@ /dev/volgroup0/lvroot /mnt
 ```
 
-1. [ ] Create nested subvolumes that we do **not** want to have snapshots of when taking snapshots of `/`.
+1. [ ] Create nested subvolumes that we do **not** want to have in the snapshot when taking snapshots of `/`.
 
 ```
-btrfs subvolume create /mnt/home
-mkdir -p /mnt/var
-btrfs subvolume create /mnt/var/abs
-btrfs subvolume create /mnt/var/tmp
-mkdir -p /mnt/var/cache/pacman
-btrfs subvolume create /mnt/var/cache/pacman/pkg
+# btrfs subvolume create /mnt/home
+# mkdir -p /mnt/var
+# btrfs subvolume create /mnt/var/abs
+# btrfs subvolume create /mnt/var/tmp
+# mkdir -p /mnt/var/cache/pacman
+# btrfs subvolume create /mnt/var/cache/pacman/pkg
 ```
 
 Mount the nested subvolumes:
 
 ```
-mount -o compress=zstd,subvol=@/var/abs /dev/volgroup0/lvroot /mnt/var/abs
-mount -o compress=zstd,subvol=@/var/tmp /dev/volgroup0/lvroot /mnt/var/tmp
-mount -o compress=zstd,subvol=@/var/cache/pacman/pkg /dev/volgroup0/lvroot /mnt/var/cache/pacman/pkg
+# mount -o compress=zstd,subvol=@/var/abs /dev/volgroup0/lvroot /mnt/var/abs
+# mount -o compress=zstd,subvol=@/var/tmp /dev/volgroup0/lvroot /mnt/var/tmp
+# mount -o compress=zstd,subvol=@/var/cache/pacman/pkg /dev/volgroup0/lvroot /mnt/var/cache/pacman/pkg
 ```
 
 * To see a list of current subvolumes: `btrfs subvolume list -a /mnt`
