@@ -68,7 +68,7 @@ _Main article: [LVM](https://wiki.archlinux.org/index.php/LVM#Create_file_system
 1. [ ] Create LVM group and volumes for root and swap.
 
 ```
-vgcreate volgroup0 /dev/cryptlvm
+vgcreate volgroup0 /dev/mapper/cryptlvm
 lvcreate -L 32G -n lvswap
 lvcreate -L 100%FREE -n lvroot
 ```
@@ -137,8 +137,8 @@ mount -o compress=zstd,subvol=@/var/tmp /dev/volgroup0/lvroot /mnt/var/tmp
 mount -o compress=zstd,subvol=@/var/cache/pacman/pkg /dev/volgroup0/lvroot /mnt/var/cache/pacman/pkg
 ```
 
-- To see a list of current subvolumes: `btrfs subvolume list -a /mnt`
-- To delete a subvolume: `btrfs subvolume delete /path/to/subvolume`
+* To see a list of current subvolumes: `btrfs subvolume list -a /mnt`
+* To delete a subvolume: `btrfs subvolume delete /path/to/subvolume`
 
 ## Update the fstab
 
