@@ -240,7 +240,11 @@ Install snapper and snap-pac:
 pacman -s snapper snap-pac
 ```
 
-snap-pac creates a pacman hook that automatically creates pre/post snapshots.
+snap-pac creates a pacman hook that automatically creates pre/post snapshots if the timer is enabled.
+
+```
+systemctl enable snapper-timeline.timer
+```
 
 Create a snapper config for a `.snapshots` subvolume:
 
@@ -267,7 +271,7 @@ TIMELINE_LIMIT_MONTHLY="12"
 TIMELINE_LIMIT_YEARLY="2"
 ```
 
-Also do this for the homedir, which I guess is `/etc/snapper/configs/home`
+1. [ ] Also do this for the homedir, which I guess is `/etc/snapper/configs/home`
 
 ## Done :)
 
