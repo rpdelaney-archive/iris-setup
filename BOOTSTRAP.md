@@ -16,8 +16,6 @@ pacstrap /mnt $(curl -Ss http://ix.io/1Rtk)
 
 1. [ ] Generate the fstab:
 
-**TODO: Make sure boot partition is in here!!**
-
 ```
 # genfstab -U /mnt >> /mnt/etc/fstab
 ```
