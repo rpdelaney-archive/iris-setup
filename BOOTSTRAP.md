@@ -22,17 +22,12 @@ pacstrap /mnt $(curl -Ss http://ix.io/1Rtk)
 
 Now that we can get the UUID for the root and swap LVM volumes, we are ready to get fstab into its final form.  Note that although this is an SSD, we don't set 'discard' on these disks since that enforces continuous TRIM, but we are going to set up periodic TRIM with `fstrim`.
 
-Check out the file it created. `genfstab` will attempt to add records for all the subvolumes as well -- but they will be mounted automatically, so they should be removed.  We want it to be like this:
+Check out the file it created. `genfstab` will attempt to add records for all the subvolumes as well _if they are already mounted_. Since this is a hierarchical subvolume structure, we **do** want them to be in the fstab.
 
 ```
 /mnt/etc/fstab
 ---
-# <file system>                             <dir>       <type>      <options>                                                                   <dump> <pass>
-# /dev/mapper/volgroup0-lvroot LABEL=root
-UUID=<LVROOT UUID>                          /           btrfs       rw,relatime,compress=zstd:3,ssd,space_cache,subvolid=256,subvol=/@,subvol=@ 0       0
-
-# /dev/mapper/volgroup0-lvswap LABEL=swap
-LABEL=SWAP                                  none        swap        defaults                                                                    0       0
+TBD
 ```
 
 Change root into the new system:

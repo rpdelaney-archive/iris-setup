@@ -92,6 +92,7 @@ Now we will create the following subvolumes:
 subvolid=5 (/dev/volgroup0/lvroot)
    └──| @ (mounted as /)
       ├── /home
+      ├── /.snapshots
       ├── /var/abs
       ├── /var/tmp
       └── /var/cache/pacman/pkg
@@ -121,24 +122,29 @@ Next mount the top-level subvolume:
 1. [ ] Create nested subvolumes that we do **not** want to have in the snapshot when taking snapshots of `/`.
 
 ```
-# btrfs subvolume create /mnt/home
-# mkdir -p /mnt/var
-# btrfs subvolume create /mnt/var/abs
-# btrfs subvolume create /mnt/var/tmp
-# mkdir -p /mnt/var/cache/pacman
-# btrfs subvolume create /mnt/var/cache/pacman/pkg
+# btrfs subvolume create /mnt/@home
+# btrfs subvolume create /mnt/@.snapshots
+# btrfs subvolume create /mnt/@var-abs
+# btrfs subvolume create /mnt/@var-tmp
+# btrfs subvolume create /mnt/@pacman-pkg
 ```
+
+* To see a list of current subvolumes: `btrfs subvolume list -a /mnt`
+* To delete a subvolume: `btrfs subvolume delete /mnt/@subvolume`
 
 Mount the nested subvolumes:
 
 ```
-# mount -o compress=zstd,subvol=@/var/abs /dev/volgroup0/lvroot /mnt/var/abs
-# mount -o compress=zstd,subvol=@/var/tmp /dev/volgroup0/lvroot /mnt/var/tmp
-# mount -o compress=zstd,subvol=@/var/cache/pacman/pkg /dev/volgroup0/lvroot /mnt/var/cache/pacman/pkg
+# mkdir /.snapshots
+# mkdir -p /mnt/var
+# mkdir -p /mnt/var/cache/pacman
+# mount -o subvol=@snapshots /dev/volgroup0/lvroot /mnt/.snapshots
+# mount -o subvol=@/var/abs /dev/volgroup0/lvroot /mnt/var/abs
+# mount -o subvol=@/var/tmp /dev/volgroup0/lvroot /mnt/var/tmp
+# mount -o subvol=@/var/cache/pacman/pkg /dev/volgroup0/lvroot /mnt/var/cache/pacman/pkg
 ```
 
-* To see a list of current subvolumes: `btrfs subvolume list -a /mnt`
-* To delete a subvolume: `btrfs subvolume delete /path/to/subvolume`
+* To print a list of live mounts, use `findmnt`
 
 ## O/S
 
