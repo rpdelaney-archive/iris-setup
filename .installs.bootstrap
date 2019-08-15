@@ -10,7 +10,6 @@ exa
 git
 gnupg
 grc
-gvim
 hddtemp
 htop
 i3-gaps
@@ -19,6 +18,7 @@ libqalculate
 light
 lynx
 mtr
+nmap
 noto-fonts
 pacman-contrib
 python
