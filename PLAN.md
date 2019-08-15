@@ -61,11 +61,27 @@ Take a btrfs snapshot here.
    * [ ] Deal with [Optimus](https://wiki.archlinux.org/index.php/NVIDIA_Optimus)
 1. [ ] Touchpad support with [libinput](https://wiki.archlinux.org/index.php/Libinput)
    * [ ] Fix this middle-click weirdness
+1. [ ] Fonts:
+   * adobe-source-code-pro-fonts
+   * gnu-free-fonts
+   * ttf-dejavu
+   * ttf-fira-code
+   * ttf-fira-mono
+   * ttf-ubuntu-font-family
 
 ### Post-WM
 
 Take a btrfs snapshot here.
 
+1. [ ] XOrg. We use this because we got an nvidia graphics card. Because nvidia sucks, there's no support for it on wayland. Don't buy nvidia.
+   * xorg-server
+   * xorg-xinit
+   * xorg-xclipboard
+   * xf86-video-intel
+   * xorg-setxkbmap
+   * xorg-xrandr
+   * xorg-xprop
+   * xorg-xset
 1. [ ] WM: [i3-gaps](https://wiki.archlinux.org/index.php/I3)
 1. [ ] Terminal emulator: [kitty](https://sw.kovidgoyal.net/kitty/)
 1. [ ] Keyboard layout in [Xorg](https://wiki.archlinux.org/index.php/Xorg/Keyboard_configuration) using `xorg-setxkbmap`

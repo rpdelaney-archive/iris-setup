@@ -81,7 +81,7 @@ _Main article: [LVM](https://wiki.archlinux.org/index.php/LVM#Create_file_system
 1. [ ] Format the root LVM volume and create the swap:
 
 ```
-# mkfs.btrfs -L root /dev/volgroup0/lvroot
+# mkfs.btrfs -L root --nodiscard /dev/volgroup0/lvroot
 # mkswap -L swap /dev/volgroup0/lvswap
 # swapon -L swap
 ```
