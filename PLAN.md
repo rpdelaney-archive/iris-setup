@@ -133,6 +133,8 @@ See also: [privacytools.io](https://www.privacytools.io/)
 
 ## Maintenance
 
+1. [ ] run [btrfs-scrub](https://github.com/agronick/btrfs-size.git) on a schedule?
+
 [System maintenance](https://wiki.archlinux.org/index.php/System_maintenance)
 
 1. [ ] Periodically [clear pacman cache](https://wiki.archlinux.org/index.php/Pacman#Cleaning_the_package_cache)
