@@ -48,18 +48,19 @@ Take a btrfs snapshot here.
    * [ ] Install `acpi`
    * [ ] Set systemd [ACPI Events](https://wiki.archlinux.org/index.php/Power_management#ACPI_events)
    * [ ] Disable Wake-on-LAN
-   * [ ] [Hybrid sleep](https://wiki.archlinux.org/index.php/Power_management#Hybrid-sleep_on_suspend_or_hibernation_request) on suspend
+   * [ ] [Suspend-then-hibernate](https://wiki.archlinux.org/index.php/Power_management#Hybrid-sleep_on_suspend_or_hibernation_request) on suspend
 1. [ ] [Security](https://wiki.archlinux.org/index.php/Security) recommendations, especially:
    * [ ] No remote access as root
    * [ ] Public key authentication only
    * [ ] Passworded BIOS
    * [ ] Boot tampering checking: investigate chkboot, [hashboot](https://github.com/tastytea/hashboot) or [chkcryptoboot](https://aur.archlinux.org/packages/mkinitcpio-chkcryptoboot/)
    * Consider disabling the front-facing camera by [blacklisting](https://wiki.archlinux.org/index.php/Kernel_module#Blacklisting) the `uvcvideo` module
-1. [ ] Domain name resolution: [dnsmasq](https://wiki.archlinux.org/index.php/Dnsmasq)
+1. [ ] Domain name resolution: [Unbound](https://wiki.archlinux.org/index.php/Unbound)
 1. [ ] Network manager: [Wicd](https://wiki.archlinux.org/index.php/Wicd)
 1. [ ] NVidia [graphics drivers](https://wiki.archlinux.org/index.php/NVIDIA)
    * [ ] Deal with [Optimus](https://wiki.archlinux.org/index.php/NVIDIA_Optimus)
 1. [ ] Touchpad support with [libinput](https://wiki.archlinux.org/index.php/Libinput)
+   * [ ] Fix this middle-click weirdness
 
 ### Post-WM
 
@@ -73,7 +74,7 @@ Take a btrfs snapshot here.
 1. [ ] Secure DNS resolution:
    * [ ] [DNSCrypt](https://wiki.archlinux.org/index.php/Dnscrypt-proxy)
    * [ ] [DNSSEC](https://wiki.archlinux.org/index.php/DNSSEC)
-   * [ ] Swiss Privacy Foundation [DNS Servers](https://web.archive.org/web/20140209065424/http://anonymous-proxy-servers.net/wiki/index.php/Censorship-free_DNS_servers)
+   * [ ] [Test](http://dnssec.vs.uni-due.de/)
 1. [ ] Mirrorlist automation with [Reflector](https://wiki.archlinux.org/index.php/Reflector#Automation)
 1. [ ] CPU [microcode](https://wiki.archlinux.org/index.php/Microcode)
 
@@ -99,7 +100,6 @@ See also: [privacytools.io](https://www.privacytools.io/)
 1. [ ] [snap-sync](https://www.archlinux.org/packages/community/any/snap-sync/) can use snapshots to back up to an external machine
 1. [ ] [ILoveCandy](https://www.reddit.com/r/archlinux/comments/6r8lk0/i_love_candydo_you/)
 1. [ ] [Activate](https://wiki.archlinux.org/index.php/Activating_Numlock_on_Bootup) NumLock on bootup
-1. [ ] Privacy-friendly DNS server in /etc/resolv.conf.head
 1. [ ] Local consumer VPN connection with non-VPN traffic dropped by `iptables`
 1. [ ] [zswap](https://wiki.archlinux.org/index.php/Zswap)
 1. [ ] [USBGuard](https://usbguard.github.io/)
