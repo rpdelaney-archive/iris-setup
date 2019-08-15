@@ -266,7 +266,7 @@ TIMELINE_LIMIT_HOURLY="3"
 TIMELINE_LIMIT_DAILY="7"
 TIMELINE_LIMIT_WEEKLY="1"
 TIMELINE_LIMIT_MONTHLY="12"
-TIMELINE_LIMIT_YEARLY="2"
+TIMELINE_LIMIT_YEARLY="1"
 ```
 
 1. [ ] Also do this for the homedir, which I guess is `/etc/snapper/configs/home`
