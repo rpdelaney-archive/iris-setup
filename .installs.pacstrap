@@ -35,6 +35,7 @@ licenses
 linux
 linux-firmware
 logrotate
+lsof
 lvm2
 make
 man-db
