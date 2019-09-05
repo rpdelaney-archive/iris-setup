@@ -29,7 +29,22 @@ Also, be sure to specify `noatime` since updating access time is bad on btrfs as
 ```
 /mnt/etc/fstab
 ---
-TBD
+
+# vim: noexpandtab:
+# <device>                                  <dir>                   <type>  <options>                                           <dump>  <pass>
+
+# /dev/mapper/volgroup0/lvroot LABEL=root
+UUID=c62d18bf-06b2-4a3e-8748-bd5aeac5117a   /                       btrfs   rw,noatime,compress=zstd:3,subvol=@                 0       0
+UUID=c62d18bf-06b2-4a3e-8748-bd5aeac5117a   /.snapshots             btrfs   rw,noatime,subvol=@snapshots                        0       0
+UUID=c62d18bf-06b2-4a3e-8748-bd5aeac5117a   /home                   btrfs   rw,noatime,subvol=@home                             0       0
+UUID=c62d18bf-06b2-4a3e-8748-bd5aeac5117a   /var/abs                btrfs   rw,noatime,subvol=@var-abs                          0       0
+UUID=c62d18bf-06b2-4a3e-8748-bd5aeac5117a   /var/tmp                btrfs   rw,noatime,subvol=@var-tmp                          0       0
+UUID=c62d18bf-06b2-4a3e-8748-bd5aeac5117a   /var/cache/pacman/pkg   btrfs   rw,noatime,subvol=@pacman-pkg                       0       0
+
+# /dev/mapper/volgroup0/lvswap LABEL=swap
+UUID=2f00ee22-5db8-4aef-ae2b-6af9988e38e6   none                    swap    defaults                                            0       0
+
+# <device>                                  <dir>                   <type>  <options>                                           <dump>  <pass>
 ```
 
 Change root into the new system:
