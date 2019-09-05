@@ -24,6 +24,8 @@ Now that we can get the UUID for the root and swap LVM volumes, we are ready to 
 
 Check out the file it created. `genfstab` will attempt to add records for all the subvolumes as well _if they are already mounted_. Since this is a hierarchical subvolume structure, we **do** want them to be in the fstab.
 
+Also, be sure to specify `noatime` since updating access time is bad on btrfs as explained [here]([200~https://lwn.net/Articles/499293/), and not really useful for much anyway.
+
 ```
 /mnt/etc/fstab
 ---
