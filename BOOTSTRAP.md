@@ -11,7 +11,7 @@ Mount the btrfs filesystem on `/mnt`.
 1. [ ] Pacstrap the filesystem:
 
 ```
-pacstrap /mnt $(curl -Ss http://ix.io/1Rtk)
+pacstrap /mnt $(curl -Ss http://ix.io/1WXT)
 ```
 
 1. [ ] Generate the fstab:
