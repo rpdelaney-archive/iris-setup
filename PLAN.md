@@ -68,19 +68,21 @@ Take a btrfs snapshot here.
    * ttf-fira-code
    * ttf-fira-mono
    * ttf-ubuntu-font-family
+   * powerline-fonts
 
 ### Post-WM
 
 Take a btrfs snapshot here.
 
 1. [ ] XOrg. We use this because we got an nvidia graphics card. Because nvidia sucks, there's no support for it on wayland. Don't buy nvidia.
-   * xorg-server
-   * xorg-xinit
-   * xorg-xclipboard
    * xf86-video-intel
+   * xorg-server
    * xorg-setxkbmap
-   * xorg-xrandr
+   * xorg-xclipboard
+   * xorg-xinit
+   * xorg-xinput
    * xorg-xprop
+   * xorg-xrandr
    * xorg-xset
 1. [ ] WM: [i3-gaps](https://wiki.archlinux.org/index.php/I3)
 1. [ ] Terminal emulator: [kitty](https://sw.kovidgoyal.net/kitty/)
